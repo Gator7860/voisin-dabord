@@ -162,12 +162,30 @@
     }
   }
 
-  /* Simulation de succès (remplacez par Formspree réel) */
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
     e.preventDefault();
-    document.getElementById('form-success').style.display = 'block';
-    this.querySelector('button[type=submit]').style.display = 'none';
-    this.querySelector('button[type=submit]').previousElementSibling.style.display = 'none';
+    const btn = this.querySelector('button[type=submit]');
+    btn.textContent = 'Envoi en cours…';
+    btn.disabled = true;
+    const data = new FormData(this);
+    try {
+      const res = await fetch(this.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        document.getElementById('form-success').style.display = 'block';
+        btn.style.display = 'none';
+        this.reset();
+      } else {
+        btn.textContent = 'Erreur, réessayez';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Erreur, réessayez';
+      btn.disabled = false;
+    }
   });
 </script>
 </body>
