@@ -3,190 +3,307 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Le Bon Voisin</title>
-  <meta name="description" content="Contactez Le Bon Voisin pour un devis ou une demande de service à domicile dans la Plaine de Mauldre, Versailles et les Yvelines." />
-  <link rel="stylesheet" href="style.css" />
+  <title>Contact — Le Bon Voisin · Yvelines (78)</title>
+  <meta name="description" content="Faites votre demande de service à domicile dans les Yvelines. Je vous recontacte sous 24h." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --vert: #2d5a27; --vert-clair: #4a8c3f; --vert-pale: #e8f0e6;
+      --creme: #f8f5ee; --brun: #3b2f20; --brun-mid: #7a6550;
+      --brun-pale: #ece5d8; --blanc: #fdfcf9;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--blanc); color: var(--brun); font-size: 16px; line-height: 1.6; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--blanc); border-bottom: 1px solid var(--brun-pale);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; color: var(--vert); text-decoration: none; }
+    .nav-logo span { color: var(--brun); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--brun-mid); font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--vert); }
+    .nav-cta { background: var(--vert); color: #fff; padding: 0.5rem 1.2rem; border-radius: 100px; text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--vert-clair); }
+
+    .contact-layout {
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      min-height: calc(100vh - 64px);
+    }
+
+    /* LEFT */
+    .contact-info {
+      background: var(--creme);
+      padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 4vw, 3.5rem);
+      display: flex; flex-direction: column; gap: 2.5rem;
+    }
+    .section-tag { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--vert); margin-bottom: 0.75rem; }
+    .contact-title { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300; color: var(--brun); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .contact-title em { font-style: italic; color: var(--vert); }
+    .contact-sub { color: var(--brun-mid); font-size: 0.95rem; font-weight: 300; line-height: 1.75; }
+
+    .info-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .info-card {
+      background: var(--blanc); border: 1px solid var(--brun-pale);
+      border-radius: 1rem; padding: 1.25rem 1.5rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .info-card-icon {
+      width: 38px; height: 38px; border-radius: 0.6rem;
+      background: var(--vert-pale); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-card-icon svg { width: 16px; height: 16px; stroke: var(--vert); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .info-card-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--brun-mid); margin-bottom: 0.2rem; }
+    .info-card-value { font-size: 0.9rem; font-weight: 500; color: var(--brun); }
+    .info-card-value a { color: var(--vert); text-decoration: none; }
+    .info-card-value a:hover { text-decoration: underline; }
+
+    .credit-note {
+      background: var(--vert); border-radius: 1rem;
+      padding: 1.5rem; color: #fff;
+    }
+    .credit-note p { font-size: 0.875rem; font-weight: 300; line-height: 1.7; }
+    .credit-note strong { font-weight: 500; }
+
+    /* RIGHT – FORM */
+    .contact-form-wrap {
+      padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 4vw, 3.5rem);
+      background: var(--blanc);
+    }
+    .contact-form-wrap h2 { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 400; color: var(--brun); margin-bottom: 2rem; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-full { grid-column: 1 / -1; }
+
+    label { display: block; font-size: 0.8rem; font-weight: 500; color: var(--brun); margin-bottom: 0.4rem; letter-spacing: 0.01em; }
+    label .req { color: var(--vert); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%; padding: 0.75rem 1rem;
+      border: 1.5px solid var(--brun-pale);
+      border-radius: 0.75rem;
+      background: var(--blanc);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; color: var(--brun);
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--vert);
+      box-shadow: 0 0 0 3px rgba(45,90,39,0.1);
+    }
+    input::placeholder, textarea::placeholder { color: var(--brun-pale); }
+    textarea { resize: vertical; min-height: 130px; }
+
+    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a6550' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+
+    .form-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem; }
+    .form-note { font-size: 0.78rem; color: var(--brun-mid); font-weight: 300; }
+
+    .btn-submit {
+      background: var(--vert); color: #fff;
+      padding: 0.85rem 2rem; border-radius: 100px;
+      border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem; font-weight: 500;
+      transition: all 0.2s; display: inline-block;
+    }
+    .btn-submit:hover { background: var(--vert-clair); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45,90,39,0.25); }
+
+    .success-msg {
+      display: none; background: var(--vert-pale);
+      border: 1px solid rgba(45,90,39,0.2);
+      border-radius: 1rem; padding: 1.25rem 1.5rem;
+      color: var(--vert); font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .success-msg.visible { display: block; }
+
+    footer { background: var(--brun); border-top: 1px solid rgba(255,255,255,0.08); padding: 2rem clamp(1.5rem, 5vw, 4rem); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    footer p { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .contact-info { padding-bottom: 2.5rem; }
+    }
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-logo">Le Bon<span> Voisin</span></a>
-  <ul class="nav-links" id="nav-menu">
+  <ul class="nav-links">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="services.html">Services</a></li>
+    <li><a href="a-propos.html">À propos</a></li>
     <li><a href="contact.html" class="active">Contact</a></li>
-    <li><a href="contact.html" class="nav-cta">Demander un devis</a></li>
   </ul>
-  <button class="menu-toggle" id="menu-btn" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="contact.html" class="nav-cta">Demander un devis</a>
 </nav>
 
-<!-- ── En-tête ── -->
-<section style="padding:4rem 5rem 3rem;background:var(--vert-pale);border-bottom:1px solid var(--bordure)">
-  <div class="section-tag">Me contacter</div>
-  <h1 class="section-title">Faites votre demande</h1>
-  <p class="section-sub">Décrivez votre besoin ci-dessous. Je vous recontacte personnellement dans les 24h pour convenir d'un rendez-vous.</p>
-</section>
+<div class="contact-layout">
 
-<!-- ── Contact ── -->
-<section class="contact-section">
-  <div class="contact-grid">
+  <!-- LEFT -->
+  <div class="contact-info">
+    <div>
+      <div class="section-tag">Me contacter</div>
+      <h1 class="contact-title">Faites votre<br><em>demande.</em></h1>
+      <p class="contact-sub">Décrivez votre besoin ci-dessous. Je vous recontacte personnellement dans les 24h — c'est moi qui vous appelle, pas un centre d'appel.</p>
+    </div>
 
-    <!-- Infos -->
-    <div class="contact-info">
-      <h3>Comment ça se passe ?</h3>
-      <p>Remplissez le formulaire ou écrivez-moi directement par e-mail. <strong>C'est moi qui vous recontacte</strong> — pas de centre d'appel, pas d'intermédiaire.</p>
-
-      <div class="contact-detail">
-        <div class="contact-detail-icon">✉️</div>
-        <div class="contact-detail-text">
-          <strong>E-mail</strong>
-          <span><a href="mailto:lebonvoisin78@gmail.com" style="color:var(--vert);text-decoration:none">lebonvoisin78@gmail.com</a></span>
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="info-card-label">E-mail</div>
+          <div class="info-card-value"><a href="mailto:lebonvoisin78@gmail.com">lebonvoisin78@gmail.com</a></div>
         </div>
       </div>
-
-      <div class="contact-detail">
-        <div class="contact-detail-icon">📍</div>
-        <div class="contact-detail-text">
-          <strong>Zone d'intervention</strong>
-          <span>Plaine de Mauldre, Versailles & environs (78)</span>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="info-card-label">Zone d'intervention</div>
+          <div class="info-card-value">Plaine de Mauldre, Versailles & environs (78)</div>
         </div>
       </div>
-
-      <div class="contact-detail">
-        <div class="contact-detail-icon">🕐</div>
-        <div class="contact-detail-text">
-          <strong>Délai de réponse</strong>
-          <span>Sous 24h, du lundi au dimanche</span>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <div class="info-card-label">Délai de réponse</div>
+          <div class="info-card-value">Sous 24h, du lundi au dimanche</div>
         </div>
       </div>
-
-      <div class="contact-detail">
-        <div class="contact-detail-icon">💶</div>
-        <div class="contact-detail-text">
-          <strong>Tarif</strong>
-          <span>14 €/heure · règlement après prestation</span>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
-      </div>
-
-      <div style="margin-top:2rem;padding:1.25rem;background:var(--vert-pale);border-radius:12px;border:1px solid var(--bordure)">
-        <p style="font-size:13px;color:var(--texte-doux);line-height:1.7">
-          <strong style="color:var(--vert)">Vous préférez écrire directement ?</strong><br>
-          Envoyez un e-mail à <a href="mailto:lebonvoisin78@gmail.com" style="color:var(--vert);font-weight:500">lebonvoisin78@gmail.com</a> en précisant le service souhaité, votre commune et vos disponibilités.
-        </p>
+        <div>
+          <div class="info-card-label">Tarif</div>
+          <div class="info-card-value">À partir de 12 €/h · règlement après prestation</div>
+        </div>
       </div>
     </div>
 
-    <!-- Formulaire -->
-    <div class="contact-form">
-      <form id="contact-form" action="https://formspree.io/f/mbdpzlyp" method="POST">
+    <div class="credit-note">
+      <p><strong>Bon à savoir :</strong> toutes les prestations donnent droit à un crédit d'impôt de 50 %. Une heure facturée 15 € ne vous coûte réellement que 7,50 €.</p>
+    </div>
+  </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="prenom">Prénom *</label>
-            <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required />
-          </div>
-          <div class="form-group">
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom" placeholder="Votre nom" />
-          </div>
+  <!-- RIGHT -->
+  <div class="contact-form-wrap">
+    <h2>Votre demande</h2>
+
+    <div class="success-msg" id="successMsg">
+      Votre message a bien été envoyé. Je vous recontacte sous 24h !
+    </div>
+
+    <form action="https://formspree.io/f/mbdpzlyp" method="POST" id="contactForm">
+      <div class="form-grid">
+
+        <div>
+          <label for="prenom">Prénom <span class="req">*</span></label>
+          <input type="text" id="prenom" name="prenom" required placeholder="Jean" />
         </div>
 
-        <div class="form-group">
-          <label for="email">E-mail *</label>
-          <input type="email" id="email" name="email" placeholder="votre@email.com" required />
+        <div>
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" placeholder="Dupont" />
         </div>
 
-        <div class="form-group">
-          <label for="commune">Votre commune *</label>
-          <input type="text" id="commune" name="commune" placeholder="Ex : Saint-Nom-la-Bretèche, Versailles…" required />
+        <div>
+          <label for="email">E-mail <span class="req">*</span></label>
+          <input type="email" id="email" name="email" required placeholder="jean@email.com" />
         </div>
 
-        <div class="form-group">
-          <label for="service">Service souhaité *</label>
+        <div>
+          <label for="commune">Commune <span class="req">*</span></label>
+          <input type="text" id="commune" name="commune" required placeholder="Versailles" />
+        </div>
+
+        <div class="form-full">
+          <label for="service">Service souhaité <span class="req">*</span></label>
           <select id="service" name="service" required>
-            <option value="">— Choisissez un service —</option>
-            <option value="baby-sitting">Baby-sitting</option>
-            <option value="pet-sitting">Pet-sitting</option>
-            <option value="jardinage">Jardinage</option>
-            <option value="karcher">Nettoyage Karcher (terrasse, allée…)</option>
-            <option value="voiture">Nettoyage voiture</option>
-            <option value="gouttieres">Nettoyage gouttières</option>
-            <option value="autre">Autre / plusieurs services</option>
+            <option value="" disabled selected>Choisissez un service</option>
+            <option value="Baby-sitting">Baby-sitting — 12 €/h</option>
+            <option value="Pet-sitting">Pet-sitting — 12 €/h</option>
+            <option value="Jardinage">Jardinage — 15 €/h</option>
+            <option value="Nettoyage Karcher">Nettoyage Karcher — 15 €/h</option>
+            <option value="Nettoyage voiture">Nettoyage voiture — 35 €/véhicule</option>
+            <option value="Nettoyage gouttières">Nettoyage gouttières — devis</option>
+            <option value="Plusieurs services">Plusieurs services</option>
           </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-full">
           <label for="message">Décrivez votre besoin</label>
-          <textarea id="message" name="message" placeholder="Surface à traiter, fréquence souhaitée, enfants / animaux, disponibilités…"></textarea>
+          <textarea id="message" name="message" placeholder="Dites-moi ce dont vous avez besoin, quand, à quelle fréquence…"></textarea>
         </div>
 
-        <div id="form-success" class="form-success">
-          ✓ Votre message a bien été envoyé ! Je vous recontacte sous 24h.
+        <input type="text" name="_gotcha" style="display:none" />
+
+        <div class="form-full form-submit-row">
+          <p class="form-note">Vos données sont utilisées uniquement pour vous recontacter.</p>
+          <button type="submit" class="btn-submit">Envoyer ma demande &rarr;</button>
         </div>
-
-        <button type="submit" class="btn-primary form-submit">Envoyer ma demande →</button>
-
-        <p style="margin-top:10px;font-size:12px;color:var(--texte-doux);text-align:center">
-          Vos données sont utilisées uniquement pour vous recontacter. Aucun démarchage.
-        </p>
-      </form>
-    </div>
-
+      </div>
+    </form>
   </div>
-</section>
+
+</div>
 
 <footer>
-  <div class="footer-logo">Le Bon<span> Voisin</span></div>
   <p>© 2025 Le Bon Voisin · Services à domicile · Yvelines (78)</p>
   <div class="footer-links">
     <a href="index.html">Accueil</a>
     <a href="services.html">Services</a>
+    <a href="a-propos.html">À propos</a>
     <a href="contact.html">Contact</a>
+    <a href="mentions-legales.html">Mentions légales</a>
   </div>
 </footer>
 
 <script>
-  document.getElementById('menu-btn').addEventListener('click', function() {
-    document.getElementById('nav-menu').classList.toggle('open');
-  });
-
-  /* Pré-sélection du service si paramètre URL */
-  const params = new URLSearchParams(window.location.search);
-  const serviceParam = params.get('service');
-  if (serviceParam) {
-    const sel = document.getElementById('service');
-    for (let opt of sel.options) {
-      if (opt.value === serviceParam) { opt.selected = true; break; }
-    }
-  }
-
-  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  const form = document.getElementById('contactForm');
+  const successMsg = document.getElementById('successMsg');
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
-    const btn = this.querySelector('button[type=submit]');
-    btn.textContent = 'Envoi en cours…';
-    btn.disabled = true;
-    const data = new FormData(this);
-    try {
-      const res = await fetch(this.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        document.getElementById('form-success').style.display = 'block';
-        btn.style.display = 'none';
-        this.reset();
-      } else {
-        btn.textContent = 'Erreur, réessayez';
-        btn.disabled = false;
-      }
-    } catch {
-      btn.textContent = 'Erreur, réessayez';
-      btn.disabled = false;
+    const data = new FormData(form);
+    const response = await fetch(form.action, {
+      method: 'POST', body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      form.style.display = 'none';
+      successMsg.classList.add('visible');
+      window.scrollTo({ top: successMsg.offsetTop - 100, behavior: 'smooth' });
     }
   });
 </script>
+
 </body>
 </html>

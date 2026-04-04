@@ -3,145 +3,495 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Le Bon Voisin — Services à domicile, Plaine de Mauldre & Versailles</title>
-  <meta name="description" content="Baby-sitting, pet-sitting, jardinage, nettoyage Karcher, voiture et gouttières. Services à domicile dans la Plaine de Mauldre, Saint-Nom-la-Bretèche et environs." />
-  <link rel="stylesheet" href="style.css" />
+  <title>Le Bon Voisin — Services à domicile, Yvelines (78)</title>
+  <meta name="description" content="Services à domicile dans les Yvelines : baby-sitting, pet-sitting, jardinage, nettoyage Karcher, voiture et gouttières. Tarifs clairs, intervention rapide." />
+  <meta name="keywords" content="services à domicile Yvelines, baby-sitting 78, jardinage Plaine de Mauldre, nettoyage karcher Versailles, pet-sitting 78" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --vert:     #2d5a27;
+      --vert-clair: #4a8c3f;
+      --vert-pale: #e8f0e6;
+      --creme:    #f8f5ee;
+      --brun:     #3b2f20;
+      --brun-mid: #7a6550;
+      --brun-pale: #ece5d8;
+      --blanc:    #fdfcf9;
+      --noir:     #1a1a1a;
+      --r: 0.5rem;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--blanc);
+      color: var(--noir);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--blanc);
+      border-bottom: 1px solid var(--brun-pale);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem; font-weight: 600;
+      color: var(--vert); text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--brun); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--brun-mid);
+      font-size: 0.9rem; font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--vert); }
+    .nav-cta {
+      background: var(--vert); color: #fff;
+      padding: 0.5rem 1.2rem; border-radius: 100px;
+      text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--vert-clair); transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      min-height: 88vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+      gap: 4rem;
+      background: var(--creme);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(74,140,63,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-text { position: relative; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--vert-pale); color: var(--vert);
+      border: 1px solid rgba(45,90,39,0.2);
+      padding: 0.3rem 0.85rem; border-radius: 100px;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em;
+      text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.5rem, 5.5vw, 4rem);
+      font-weight: 300; line-height: 1.1;
+      color: var(--brun); margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--vert);
+      font-weight: 400;
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--brun-mid);
+      max-width: 420px; margin-bottom: 2.5rem;
+      line-height: 1.7; font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      background: var(--vert); color: #fff;
+      padding: 0.85rem 1.8rem; border-radius: 100px;
+      text-decoration: none; font-size: 0.95rem; font-weight: 500;
+      transition: all 0.2s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--vert-clair); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45,90,39,0.25); }
+    .btn-ghost {
+      color: var(--brun); text-decoration: none;
+      font-size: 0.95rem; font-weight: 400;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      border-bottom: 1px solid var(--brun-pale);
+      padding-bottom: 2px; transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--vert); }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3rem;
+      padding-top: 2.5rem; border-top: 1px solid var(--brun-pale);
+    }
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem; font-weight: 600; color: var(--vert);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--brun-mid); margin-top: 0.2rem; }
+
+    .hero-image {
+      position: relative; border-radius: 1.5rem;
+      overflow: hidden; aspect-ratio: 4/5;
+      box-shadow: 0 32px 64px rgba(59,47,32,0.15);
+    }
+    .hero-image img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .hero-image:hover img { transform: scale(1.03); }
+    .hero-image-badge {
+      position: absolute; bottom: 1.5rem; left: 1.5rem;
+      background: rgba(253,252,249,0.95); backdrop-filter: blur(8px);
+      border-radius: 0.75rem; padding: 0.85rem 1.1rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .badge-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--vert-pale); display: flex; align-items: center; justify-content: center;
+    }
+    .badge-icon svg { width: 16px; height: 16px; stroke: var(--vert); }
+    .badge-text-top { font-size: 0.7rem; color: var(--brun-mid); }
+    .badge-text-main { font-size: 0.875rem; font-weight: 500; color: var(--brun); }
+
+    /* SERVICES */
+    section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem); }
+
+    .section-tag {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--vert);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 300; color: var(--brun);
+      line-height: 1.2; letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-title em { font-style: italic; color: var(--vert); }
+    .section-sub {
+      color: var(--brun-mid); font-size: 1rem;
+      max-width: 520px; font-weight: 300; line-height: 1.7;
+    }
+
+    .services-header { margin-bottom: 3.5rem; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--blanc);
+      border: 1px solid var(--brun-pale);
+      border-radius: 1.25rem;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-decoration: none; color: inherit;
+      display: block;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(59,47,32,0.1);
+    }
+    .service-img {
+      aspect-ratio: 16/9; overflow: hidden;
+      background: var(--vert-pale);
+    }
+    .service-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .service-card:hover .service-img img { transform: scale(1.05); }
+    .service-body { padding: 1.25rem 1.4rem 1.5rem; }
+    .service-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem; font-weight: 400; color: var(--brun);
+      margin-bottom: 0.4rem;
+    }
+    .service-desc { font-size: 0.85rem; color: var(--brun-mid); font-weight: 300; line-height: 1.6; margin-bottom: 1rem; }
+    .service-price {
+      font-size: 0.875rem; font-weight: 500; color: var(--vert);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .service-price-num { font-family: 'Fraunces', serif; font-size: 1.2rem; }
+
+    /* CREDIT IMPOT BANNER */
+    .banner-credit {
+      background: var(--vert);
+      border-radius: 1.5rem;
+      padding: clamp(2rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+      margin: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+    .banner-credit-text h3 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 300; color: #fff; line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .banner-credit-text h3 em { font-style: italic; }
+    .banner-credit-text p { color: rgba(255,255,255,0.8); font-size: 0.95rem; font-weight: 300; max-width: 460px; }
+    .banner-big-num {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3.5rem, 8vw, 5.5rem);
+      font-weight: 600; color: rgba(255,255,255,0.25);
+      line-height: 1; white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* HOW IT WORKS */
+    .how-bg { background: var(--creme); }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem; margin-top: 3.5rem;
+    }
+    .step { position: relative; }
+    .step-num {
+      font-family: 'Fraunces', serif;
+      font-size: 3rem; font-weight: 600;
+      color: var(--brun-pale); line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .step h4 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem; font-weight: 400; color: var(--brun);
+      margin-bottom: 0.5rem;
+    }
+    .step p { font-size: 0.875rem; color: var(--brun-mid); font-weight: 300; line-height: 1.7; }
+
+    /* ZONE */
+    .zone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .zone-list {
+      columns: 2; gap: 1rem; margin-top: 2rem;
+      list-style: none;
+    }
+    .zone-list li {
+      font-size: 0.9rem; color: var(--brun-mid);
+      padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem;
+      break-inside: avoid;
+    }
+    .zone-list li::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--vert); flex-shrink: 0;
+    }
+    .zone-img {
+      border-radius: 1.25rem; overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: 0 24px 48px rgba(59,47,32,0.12);
+    }
+    .zone-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* CTA FINAL */
+    .cta-final {
+      text-align: center;
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+      background: var(--brun);
+    }
+    .cta-final .section-tag { color: rgba(255,255,255,0.5); }
+    .cta-final .section-title { color: #fff; max-width: 560px; margin: 0 auto 1rem; }
+    .cta-final .section-title em { color: #a8c9a3; }
+    .cta-final p { color: rgba(255,255,255,0.65); margin-bottom: 2.5rem; font-weight: 300; }
+    .btn-light {
+      background: #fff; color: var(--brun);
+      padding: 0.85rem 2rem; border-radius: 100px;
+      text-decoration: none; font-size: 0.95rem; font-weight: 500;
+      transition: all 0.2s; display: inline-block;
+    }
+    .btn-light:hover { background: var(--creme); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+    /* FOOTER */
+    footer {
+      background: var(--brun);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; gap: 2.5rem; min-height: auto; padding-top: 3rem; }
+      .hero-image { max-height: 320px; aspect-ratio: 3/2; }
+      .nav-links { display: none; }
+      .zone-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-stats { gap: 1.5rem; }
+      .banner-big-num { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ── Navigation ── -->
+<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Le Bon<span> Voisin</span></a>
-  <ul class="nav-links" id="nav-menu">
-    <li><a href="index.html" class="active">Accueil</a></li>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
     <li><a href="services.html">Services</a></li>
+    <li><a href="a-propos.html">À propos</a></li>
     <li><a href="contact.html">Contact</a></li>
-    <li><a href="contact.html" class="nav-cta">Demander un devis</a></li>
   </ul>
-  <button class="menu-toggle" id="menu-btn" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="contact.html" class="nav-cta">Demander un devis</a>
 </nav>
 
-<!-- ── Hero ── -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">Plaine de Mauldre · Versailles · 78</div>
+  <div class="hero-text">
+    <span class="hero-badge">Yvelines · 78 · Plaine de Mauldre</span>
     <h1>Votre quotidien,<br><em>pris en main</em><br>avec soin.</h1>
-    <p class="hero-desc">
-      Baby-sitting, jardinage, nettoyage Karcher, voiture, gouttières…
-      Des services fiables et soignés, directement à votre domicile.
-      <strong>Je viens à vous — c'est moi qui contacte.</strong>
-    </p>
+    <p class="hero-sub">Baby-sitting, jardinage, nettoyage Karcher, voiture, gouttières… Des services fiables à domicile, assurés par un jeune sérieux qui se déplace chez vous.</p>
     <div class="hero-actions">
       <a href="contact.html" class="btn-primary">Faire une demande</a>
-      <a href="services.html" class="btn-secondary">Voir les services</a>
+      <a href="services.html" class="btn-ghost">Voir les services &rarr;</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">6</div>
+        <div class="stat-label">services proposés</div>
+      </div>
+      <div>
+        <div class="stat-num">24h</div>
+        <div class="stat-label">délai de réponse</div>
+      </div>
+      <div>
+        <div class="stat-num">78</div>
+        <div class="stat-label">Yvelines, à domicile</div>
+      </div>
     </div>
   </div>
-
-  <div class="hero-visual">
-    <div class="hero-card-stack">
-      <div class="stat-card main">
-        <div class="stat-num">14€</div>
-        <div class="stat-label">de l'heure · tarif unique & transparent</div>
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Jardin soigné dans les Yvelines" loading="eager" />
+    <div class="hero-image-badge">
+      <div class="badge-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
-      <div class="stat-card float1">
-        <div class="s-num">6</div>
-        <div class="s-label">services proposés</div>
-      </div>
-      <div class="stat-card float2">
-        <div class="s-num">78</div>
-        <div class="s-label">Yvelines, à domicile</div>
+      <div>
+        <div class="badge-text-top">Tarif transparent</div>
+        <div class="badge-text-main">À partir de 12 €/heure</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Services (aperçu) ── -->
-<section class="services-section">
+<!-- SERVICES -->
+<section>
   <div class="services-header">
     <div class="section-tag">Ce que je propose</div>
-    <h2 class="section-title">Tous vos besoins,<br>un seul interlocuteur</h2>
-    <p class="section-sub">Des prestations variées, assurées et réalisées avec le même sérieux, que ce soit pour vos enfants, vos animaux ou votre extérieur.</p>
+    <h2 class="section-title">Tous vos besoins,<br><em>un seul interlocuteur</em></h2>
+    <p class="section-sub">Des prestations variées, réalisées avec le même sérieux, que ce soit pour vos enfants, vos animaux ou votre extérieur.</p>
   </div>
   <div class="services-grid">
-
     <a href="services.html#baby" class="service-card">
-      <div class="service-icon-wrap">👶</div>
-      <h3>Baby-sitting</h3>
-      <p>Garde d'enfants à domicile, en toute confiance. Disponible en semaine et le week-end selon vos horaires.</p>
-      <span class="service-tarif">14 €/h</span>
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=600&q=75" alt="Baby-sitting" loading="lazy" />
+      </div>
+      <div class="service-body">
+        <div class="service-name">Baby-sitting</div>
+        <div class="service-desc">Garde d'enfants à domicile, en toute confiance. Disponible en semaine et le week-end.</div>
+        <div class="service-price"><span class="service-price-num">12 €</span> / heure</div>
+      </div>
     </a>
-
     <a href="services.html#pet" class="service-card">
-      <div class="service-icon-wrap">🐾</div>
-      <h3>Pet-sitting</h3>
-      <p>Garde, promenades et soins pour vos animaux de compagnie pendant vos absences.</p>
-      <span class="service-tarif">14 €/h</span>
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=75" alt="Pet-sitting" loading="lazy" />
+      </div>
+      <div class="service-body">
+        <div class="service-name">Pet-sitting</div>
+        <div class="service-desc">Garde, promenades et soins pour vos animaux de compagnie pendant vos absences.</div>
+        <div class="service-price"><span class="service-price-num">12 €</span> / heure</div>
+      </div>
     </a>
-
     <a href="services.html#jardin" class="service-card">
-      <div class="service-icon-wrap">🌿</div>
-      <h3>Jardinage</h3>
-      <p>Taille de haies, tonte de pelouse, désherbage et entretien général de votre jardin.</p>
-      <span class="service-tarif">14 €/h</span>
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=75" alt="Jardinage" loading="lazy" />
+      </div>
+      <div class="service-body">
+        <div class="service-name">Jardinage</div>
+        <div class="service-desc">Taille de haies, tonte de pelouse, désherbage et entretien général de votre jardin.</div>
+        <div class="service-price"><span class="service-price-num">15 €</span> / heure</div>
+      </div>
     </a>
-
     <a href="services.html#karcher" class="service-card">
-      <div class="service-icon-wrap">💧</div>
-      <h3>Nettoyage Karcher</h3>
-      <p>Terrasses, allées, façades et dalles remises à neuf grâce au nettoyage haute pression.</p>
-      <span class="service-tarif">14 €/h</span>
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=75" alt="Nettoyage Karcher" loading="lazy" />
+      </div>
+      <div class="service-body">
+        <div class="service-name">Nettoyage Karcher</div>
+        <div class="service-desc">Terrasses, allées, façades et dalles remises à neuf grâce au nettoyage haute pression.</div>
+        <div class="service-price"><span class="service-price-num">15 €</span> / heure</div>
+      </div>
     </a>
-
     <a href="services.html#voiture" class="service-card">
-      <div class="service-icon-wrap">🚗</div>
-      <h3>Nettoyage voiture</h3>
-      <p>Lavage intérieur et extérieur soigné, directement dans votre allée ou garage.</p>
-      <span class="service-tarif">14 €/h</span>
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=600&q=75" alt="Nettoyage voiture" loading="lazy" />
+      </div>
+      <div class="service-body">
+        <div class="service-name">Nettoyage voiture</div>
+        <div class="service-desc">Lavage intérieur et extérieur soigné, directement dans votre allée ou garage.</div>
+        <div class="service-price"><span class="service-price-num">35 €</span> / véhicule</div>
+      </div>
     </a>
-
     <a href="services.html#gouttieres" class="service-card">
-      <div class="service-icon-wrap">🏠</div>
-      <h3>Nettoyage gouttières</h3>
-      <p>Débouchage et nettoyage complet des gouttières pour protéger votre toiture.</p>
-      <span class="service-tarif">14 €/h</span>
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1609340496756-e82c56e98ba9?w=600&q=75" alt="Nettoyage gouttières" loading="lazy" />
+      </div>
+      <div class="service-body">
+        <div class="service-name">Nettoyage gouttières</div>
+        <div class="service-desc">Débouchage et nettoyage complet des gouttières pour protéger votre toiture.</div>
+        <div class="service-price">Devis sur demande</div>
+      </div>
     </a>
-
   </div>
 </section>
 
-<!-- ── Comment ça marche ── -->
-<section class="process-section">
-  <div style="text-align:center">
-    <div class="section-tag">La démarche</div>
-    <h2 class="section-title">Simple, rapide, sans surprise</h2>
+<!-- CREDIT IMPOT -->
+<div class="banner-credit">
+  <div class="banner-credit-text">
+    <h3>Bénéficiez d'un <em>crédit d'impôt de 50 %</em><br>sur toutes les prestations</h3>
+    <p>En tant que service à la personne déclaré, chaque heure facturée vous revient deux fois moins cher grâce au crédit d'impôt. Une heure à 15 € ne vous coûte réellement que 7,50 €.</p>
   </div>
-  <div class="process-grid">
-    <div class="process-step">
-      <div class="step-number">01</div>
-      <h3>Vous faites une demande</h3>
+  <div class="banner-big-num">50%</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-bg">
+  <div class="section-tag">La démarche</div>
+  <h2 class="section-title">Simple, rapide,<br><em>sans surprise</em></h2>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Vous faites une demande</h4>
       <p>Remplissez le formulaire en ligne ou envoyez un e-mail. Je reviens vers vous dans les 24h.</p>
     </div>
-    <div class="process-step">
-      <div class="step-number">02</div>
-      <h3>Je vous contacte</h3>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Je vous contacte</h4>
       <p>C'est moi qui vous rappelle pour discuter de votre besoin et fixer un rendez-vous.</p>
     </div>
-    <div class="process-step">
-      <div class="step-number">03</div>
-      <h3>Je viens chez vous</h3>
-      <p>Tarif clair à 14€/h, sans frais cachés. Règlement après la prestation.</p>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Je viens chez vous</h4>
+      <p>Tarif clair et annoncé à l'avance. Aucun frais caché. Règlement après la prestation.</p>
     </div>
   </div>
 </section>
 
-<!-- ── Zone d'intervention ── -->
+<!-- ZONE -->
 <section>
-  <div class="zone-section">
+  <div class="zone-grid">
     <div>
       <div class="section-tag">Zone d'intervention</div>
-      <h2 class="section-title">Plaine de Mauldre<br>& alentours</h2>
+      <h2 class="section-title">Plaine de Mauldre<br>& <em>alentours</em></h2>
       <p class="section-sub">Je me déplace dans un large périmètre autour de Saint-Nom-la-Bretèche, dans les Yvelines.</p>
       <ul class="zone-list">
         <li>Saint-Nom-la-Bretèche</li>
@@ -155,37 +505,31 @@
         <li>Et environs</li>
       </ul>
     </div>
-    <div class="zone-map">
-      <span>🗺️</span>
-      Yvelines · 78
-      <p style="font-size:13px;font-family:'DM Sans',sans-serif">Plaine de Mauldre & Versailles</p>
+    <div class="zone-img">
+      <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=700&q=80" alt="Maison dans les Yvelines" loading="lazy" />
     </div>
   </div>
 </section>
 
-<!-- ── CTA final ── -->
-<section style="background:var(--vert);text-align:center;padding:4rem 2rem">
-  <div class="section-tag" style="color:rgba(255,255,255,0.6)">Prêt à commencer ?</div>
-  <h2 class="section-title" style="color:white;margin:0 auto 1rem">Un besoin ? Je m'en occupe.</h2>
-  <p style="color:rgba(255,255,255,0.75);margin-bottom:2rem;font-size:16px">Décrivez votre demande, je vous recontacte rapidement.</p>
-  <a href="contact.html" class="btn-primary" style="background:white;color:var(--vert);font-weight:600">Faire une demande →</a>
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="section-tag">Prêt à commencer ?</div>
+  <h2 class="section-title">Un besoin ?<br><em>Je m'en occupe.</em></h2>
+  <p>Décrivez votre demande, je vous recontacte rapidement.</p>
+  <a href="contact.html" class="btn-light">Faire une demande &rarr;</a>
 </section>
 
-<!-- ── Footer ── -->
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Le Bon<span> Voisin</span></div>
   <p>© 2025 Le Bon Voisin · Services à domicile · Yvelines (78)</p>
   <div class="footer-links">
     <a href="index.html">Accueil</a>
     <a href="services.html">Services</a>
+    <a href="a-propos.html">À propos</a>
     <a href="contact.html">Contact</a>
+    <a href="mentions-legales.html">Mentions légales</a>
   </div>
 </footer>
 
-<script>
-  document.getElementById('menu-btn').addEventListener('click', function() {
-    document.getElementById('nav-menu').classList.toggle('open');
-  });
-</script>
 </body>
 </html>

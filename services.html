@@ -3,275 +3,321 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services — Le Bon Voisin</title>
-  <meta name="description" content="Découvrez tous les services proposés par Le Bon Voisin : baby-sitting, pet-sitting, jardinage, Karcher, nettoyage voiture et gouttières. 14€/h, Yvelines." />
-  <link rel="stylesheet" href="style.css" />
+  <title>Services — Le Bon Voisin · Yvelines (78)</title>
+  <meta name="description" content="Découvrez tous les services à domicile proposés dans les Yvelines : baby-sitting, pet-sitting, jardinage, nettoyage Karcher, voiture et gouttières." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --vert: #2d5a27; --vert-clair: #4a8c3f; --vert-pale: #e8f0e6;
+      --creme: #f8f5ee; --brun: #3b2f20; --brun-mid: #7a6550;
+      --brun-pale: #ece5d8; --blanc: #fdfcf9; --noir: #1a1a1a;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--blanc); color: var(--noir); font-size: 16px; line-height: 1.6; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--blanc); border-bottom: 1px solid var(--brun-pale);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; color: var(--vert); text-decoration: none; }
+    .nav-logo span { color: var(--brun); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--brun-mid); font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--vert); }
+    .nav-cta { background: var(--vert); color: #fff; padding: 0.5rem 1.2rem; border-radius: 100px; text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--vert-clair); }
+
+    .page-hero {
+      background: var(--creme); padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem) 0;
+    }
+    .page-hero-inner { max-width: 640px; padding-bottom: clamp(3rem, 6vw, 5rem); }
+    .section-tag { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--vert); margin-bottom: 0.75rem; }
+    .page-title { font-family: 'Fraunces', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; color: var(--brun); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .page-title em { font-style: italic; color: var(--vert); }
+    .page-sub { color: var(--brun-mid); font-size: 1rem; font-weight: 300; line-height: 1.7; }
+
+    .services-list { padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem); display: flex; flex-direction: column; gap: 4rem; }
+
+    .service-block {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .service-block:nth-child(even) .service-block-img { order: -1; }
+    .service-block-img { border-radius: 1.25rem; overflow: hidden; aspect-ratio: 4/3; }
+    .service-block-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .service-block:hover .service-block-img img { transform: scale(1.04); }
+
+    .service-block-text {}
+    .service-number { font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 600; color: var(--brun-pale); line-height: 1; margin-bottom: 0.5rem; }
+    .service-block-name { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 400; color: var(--brun); margin-bottom: 0.75rem; line-height: 1.2; }
+    .service-block-desc { color: var(--brun-mid); font-size: 0.95rem; font-weight: 300; line-height: 1.75; margin-bottom: 1.5rem; }
+    .service-details { list-style: none; margin-bottom: 1.75rem; }
+    .service-details li { font-size: 0.875rem; color: var(--brun-mid); padding: 0.3rem 0; display: flex; align-items: center; gap: 0.6rem; }
+    .service-details li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--vert); flex-shrink: 0; }
+    .service-price-box {
+      display: inline-flex; align-items: baseline; gap: 0.4rem;
+      background: var(--vert-pale); border: 1px solid rgba(45,90,39,0.15);
+      border-radius: 0.75rem; padding: 0.75rem 1.25rem;
+    }
+    .service-price-main { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 600; color: var(--vert); }
+    .service-price-unit { font-size: 0.85rem; color: var(--vert); font-weight: 400; }
+    .service-price-after { font-size: 0.75rem; color: var(--brun-mid); margin-top: 0.3rem; display: block; }
+
+    .divider { border: none; border-top: 1px solid var(--brun-pale); }
+
+    /* CREDIT IMPOT */
+    .credit-section {
+      background: var(--creme); padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+    }
+    .credit-inner {
+      max-width: 700px;
+    }
+    .credit-section h2 { font-family: 'Fraunces', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 300; color: var(--brun); margin-bottom: 1rem; }
+    .credit-section h2 em { font-style: italic; color: var(--vert); }
+    .credit-section p { color: var(--brun-mid); font-size: 0.95rem; font-weight: 300; line-height: 1.8; margin-bottom: 1rem; }
+    .credit-example {
+      background: var(--blanc); border: 1px solid var(--brun-pale);
+      border-radius: 1rem; padding: 1.5rem; margin-top: 2rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .credit-col { text-align: center; }
+    .credit-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--brun-mid); margin-bottom: 0.5rem; }
+    .credit-val { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 600; }
+    .credit-val.before { color: var(--brun-mid); text-decoration: line-through; }
+    .credit-val.after { color: var(--vert); }
+    .credit-sub { font-size: 0.8rem; color: var(--brun-mid); margin-top: 0.25rem; }
+
+    .btn-primary { background: var(--vert); color: #fff; padding: 0.85rem 1.8rem; border-radius: 100px; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: all 0.2s; display: inline-block; margin-top: 2rem; }
+    .btn-primary:hover { background: var(--vert-clair); transform: translateY(-2px); }
+
+    footer { background: var(--brun); border-top: 1px solid rgba(255,255,255,0.08); padding: 2rem clamp(1.5rem, 5vw, 4rem); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    footer p { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 768px) {
+      .service-block { grid-template-columns: 1fr; gap: 2rem; }
+      .service-block:nth-child(even) .service-block-img { order: 0; }
+      .nav-links { display: none; }
+      .credit-example { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-logo">Le Bon<span> Voisin</span></a>
-  <ul class="nav-links" id="nav-menu">
+  <ul class="nav-links">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="a-propos.html">À propos</a></li>
     <li><a href="contact.html">Contact</a></li>
-    <li><a href="contact.html" class="nav-cta">Demander un devis</a></li>
   </ul>
-  <button class="menu-toggle" id="menu-btn" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="contact.html" class="nav-cta">Demander un devis</a>
 </nav>
 
-<!-- ── En-tête page ── -->
-<section style="padding:4rem 5rem 3rem;background:var(--vert-pale);border-bottom:1px solid var(--bordure)">
-  <div class="section-tag">Ce que je propose</div>
-  <h1 class="section-title">Mes services</h1>
-  <p class="section-sub">Six prestations à domicile, un tarif unique de 14€/h. Je me déplace dans la Plaine de Mauldre, Versailles et les communes alentour.</p>
-</section>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-tag">Ce que je propose</div>
+    <h1 class="page-title">Des services <em>soignés</em>,<br>directement chez vous.</h1>
+    <p class="page-sub">Six prestations, un seul interlocuteur, des tarifs clairs. Je me déplace dans les Yvelines et vous accompagne au quotidien.</p>
+  </div>
+</div>
 
-<!-- ── Service : Baby-sitting ── -->
-<section id="baby" style="border-bottom:1px solid var(--bordure)">
-  <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start">
-    <div>
-      <div class="service-icon-wrap" style="width:64px;height:64px;font-size:28px;border-radius:16px;margin-bottom:1rem">👶</div>
-      <h2 class="section-title" style="font-size:2rem">Baby-sitting</h2>
-      <span class="service-tarif" style="font-size:15px;padding:6px 16px">14 €/heure</span>
-    </div>
-    <div>
-      <p style="font-size:16px;color:var(--texte-doux);line-height:1.8;margin-bottom:1.5rem">
-        Je garde vos enfants à votre domicile dans un cadre familier et rassurant. Disponible en journée, en soirée ou le week-end selon vos besoins.
-      </p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div style="background:var(--vert-pale);border-radius:12px;padding:1rem">
-          <strong style="font-size:14px;color:var(--vert)">✓ Ce qui est inclus</strong>
-          <ul style="margin-top:8px;font-size:13px;color:var(--texte-doux);list-style:none;line-height:2">
-            <li>Surveillance et accompagnement</li>
-            <li>Aide aux devoirs si besoin</li>
-            <li>Activités et jeux</li>
-            <li>Repas ou goûter</li>
-          </ul>
-        </div>
-        <div style="background:white;border:1px solid var(--bordure);border-radius:12px;padding:1rem">
-          <strong style="font-size:14px;color:var(--texte)">📋 Infos pratiques</strong>
-          <ul style="margin-top:8px;font-size:13px;color:var(--texte-doux);list-style:none;line-height:2">
-            <li>Tarif : 14€/h</li>
-            <li>Déplacement compris</li>
-            <li>Règlement après prestation</li>
-            <li>Disponible 7j/7</li>
-          </ul>
-        </div>
+<div class="services-list">
+
+  <!-- BABY-SITTING -->
+  <div class="service-block" id="baby">
+    <div class="service-block-text">
+      <div class="service-number">01</div>
+      <h2 class="service-block-name">Baby-sitting</h2>
+      <p class="service-block-desc">Je garde vos enfants à domicile avec sérieux et bienveillance. Disponible en semaine, le week-end et en soirée selon vos horaires. Je viens chez vous, pas besoin de vous organiser pour déposer les enfants.</p>
+      <ul class="service-details">
+        <li>Garde à domicile, en semaine et week-end</li>
+        <li>Disponible en soirée</li>
+        <li>Jeux, activités, goûter selon vos consignes</li>
+        <li>Éligible au crédit d'impôt (50 %)</li>
+        <li>Paiement possible en CESU</li>
+      </ul>
+      <div class="service-price-box">
+        <span class="service-price-main">12 €</span>
+        <span class="service-price-unit">/ heure</span>
       </div>
-      <a href="contact.html?service=baby-sitting" class="btn-primary" style="margin-top:1.5rem;display:inline-block">Demander ce service →</a>
+      <span class="service-price-after">Soit 6 €/h après crédit d'impôt</span>
+    </div>
+    <div class="service-block-img">
+      <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=700&q=80" alt="Baby-sitting à domicile" loading="lazy" />
     </div>
   </div>
-</section>
 
-<!-- ── Service : Pet-sitting ── -->
-<section id="pet" style="border-bottom:1px solid var(--bordure);background:var(--vert-pale)">
-  <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start">
-    <div>
-      <div class="service-icon-wrap" style="width:64px;height:64px;font-size:28px;border-radius:16px;margin-bottom:1rem;background:white">🐾</div>
-      <h2 class="section-title" style="font-size:2rem">Pet-sitting</h2>
-      <span class="service-tarif" style="font-size:15px;padding:6px 16px">14 €/heure</span>
+  <hr class="divider" />
+
+  <!-- PET-SITTING -->
+  <div class="service-block" id="pet">
+    <div class="service-block-img">
+      <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=700&q=80" alt="Pet-sitting, promenade de chien" loading="lazy" />
     </div>
-    <div>
-      <p style="font-size:16px;color:var(--texte-doux);line-height:1.8;margin-bottom:1.5rem">
-        Vos animaux méritent le meilleur soin pendant vos absences. Je me déplace chez vous pour les nourrir, les promener et leur apporter la présence dont ils ont besoin.
-      </p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div style="background:white;border-radius:12px;padding:1rem">
-          <strong style="font-size:14px;color:var(--vert)">✓ Ce qui est inclus</strong>
-          <ul style="margin-top:8px;font-size:13px;color:var(--texte-doux);list-style:none;line-height:2">
-            <li>Promenades (chiens)</li>
-            <li>Alimentation & eau</li>
-            <li>Litière (chats)</li>
-            <li>Câlins et compagnie</li>
-          </ul>
-        </div>
-        <div style="background:white;border:1px solid var(--bordure);border-radius:12px;padding:1rem">
-          <strong style="font-size:14px;color:var(--texte)">📋 Infos pratiques</strong>
-          <ul style="margin-top:8px;font-size:13px;color:var(--texte-doux);list-style:none;line-height:2">
-            <li>Tarif : 14€/h</li>
-            <li>Chiens, chats, NAC</li>
-            <li>Déplacement compris</li>
-            <li>Compte-rendu possible</li>
-          </ul>
-        </div>
+    <div class="service-block-text">
+      <div class="service-number">02</div>
+      <h2 class="service-block-name">Pet-sitting</h2>
+      <p class="service-block-desc">Vos animaux sont en de bonnes mains pendant vos absences. Je passe à votre domicile pour les nourrir, les promener et m'assurer de leur bien-être, que vous soyez à Paris pour la journée ou en vacances.</p>
+      <ul class="service-details">
+        <li>Visites à votre domicile</li>
+        <li>Promenades pour les chiens</li>
+        <li>Nourrissage et soins courants</li>
+        <li>Chiens, chats, petits animaux</li>
+        <li>Éligible au crédit d'impôt (50 %)</li>
+      </ul>
+      <div class="service-price-box">
+        <span class="service-price-main">12 €</span>
+        <span class="service-price-unit">/ heure</span>
       </div>
-      <a href="contact.html?service=pet-sitting" class="btn-primary" style="margin-top:1.5rem;display:inline-block">Demander ce service →</a>
+      <span class="service-price-after">Soit 6 €/h après crédit d'impôt</span>
     </div>
   </div>
-</section>
 
-<!-- ── Service : Jardinage ── -->
-<section id="jardin" style="border-bottom:1px solid var(--bordure)">
-  <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start">
-    <div>
-      <div class="service-icon-wrap" style="width:64px;height:64px;font-size:28px;border-radius:16px;margin-bottom:1rem">🌿</div>
-      <h2 class="section-title" style="font-size:2rem">Jardinage</h2>
-      <span class="service-tarif" style="font-size:15px;padding:6px 16px">14 €/heure</span>
-    </div>
-    <div>
-      <p style="font-size:16px;color:var(--texte-doux);line-height:1.8;margin-bottom:1.5rem">
-        Taille de haies, tonte de pelouse, désherbage… Je prends soin de votre jardin avec soin et régularité, pour qu'il reste toujours impeccable.
-      </p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div style="background:var(--vert-pale);border-radius:12px;padding:1rem">
-          <strong style="font-size:14px;color:var(--vert)">✓ Prestations</strong>
-          <ul style="margin-top:8px;font-size:13px;color:var(--texte-doux);list-style:none;line-height:2">
-            <li>Taille de haies</li>
-            <li>Tonte de pelouse</li>
-            <li>Désherbage</li>
-            <li>Ramassage de feuilles</li>
-          </ul>
-        </div>
-        <div style="background:white;border:1px solid var(--bordure);border-radius:12px;padding:1rem">
-          <strong style="font-size:14px;color:var(--texte)">📋 Infos pratiques</strong>
-          <ul style="margin-top:8px;font-size:13px;color:var(--texte-doux);list-style:none;line-height:2">
-            <li>Tarif : 14€/h</li>
-            <li>Matériel fourni</li>
-            <li>Évacuation des déchets</li>
-            <li>Passage régulier possible</li>
-          </ul>
-        </div>
+  <hr class="divider" />
+
+  <!-- JARDINAGE -->
+  <div class="service-block" id="jardin">
+    <div class="service-block-text">
+      <div class="service-number">03</div>
+      <h2 class="service-block-name">Jardinage</h2>
+      <p class="service-block-desc">Taille de haies, tonte de pelouse, désherbage, nettoyage des massifs… Je prends soin de votre jardin pour que vous puissiez en profiter sans vous en préoccuper. Je dispose du matériel nécessaire.</p>
+      <ul class="service-details">
+        <li>Tonte de pelouse</li>
+        <li>Taille de haies et arbustes</li>
+        <li>Désherbage et entretien des massifs</li>
+        <li>Ramassage de feuilles</li>
+        <li>Éligible au crédit d'impôt (50 %)</li>
+      </ul>
+      <div class="service-price-box">
+        <span class="service-price-main">15 €</span>
+        <span class="service-price-unit">/ heure</span>
       </div>
-      <a href="contact.html?service=jardinage" class="btn-primary" style="margin-top:1.5rem;display:inline-block">Demander ce service →</a>
+      <span class="service-price-after">Soit 7,50 €/h après crédit d'impôt</span>
+    </div>
+    <div class="service-block-img">
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&q=80" alt="Jardinage entretien" loading="lazy" />
     </div>
   </div>
-</section>
 
-<!-- ── Service : Karcher ── -->
-<section id="karcher" style="border-bottom:1px solid var(--bordure);background:var(--vert-pale)">
-  <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start">
-    <div>
-      <div class="service-icon-wrap" style="width:64px;height:64px;font-size:28px;border-radius:16px;margin-bottom:1rem;background:white">💧</div>
-      <h2 class="section-title" style="font-size:2rem">Nettoyage Karcher</h2>
-      <span class="service-tarif" style="font-size:15px;padding:6px 16px">14 €/heure</span>
+  <hr class="divider" />
+
+  <!-- KARCHER -->
+  <div class="service-block" id="karcher">
+    <div class="service-block-img">
+      <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700&q=80" alt="Nettoyage haute pression Karcher" loading="lazy" />
     </div>
-    <div>
-      <p style="font-size:16px;color:var(--texte-doux);line-height:1.8;margin-bottom:1.5rem">
-        Le nettoyage haute pression redonne vie à vos extérieurs. Terrasses, allées, dalles, façades : un résultat spectaculaire en peu de temps.
-      </p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div style="background:white;border-radius:12px;padding:1rem">
-          <strong style="font-size:14px;color:var(--vert)">✓ Surfaces traitées</strong>
-          <ul style="margin-top:8px;font-size:13px;color:var(--texte-doux);list-style:none;line-height:2">
-            <li>Terrasses & dalles</li>
-            <li>Allées & chemins</li>
-            <li>Façades & murets</li>
-            <li>Mobilier de jardin</li>
-          </ul>
-        </div>
-        <div style="background:white;border:1px solid var(--bordure);border-radius:12px;padding:1rem">
-          <strong style="font-size:14px;color:var(--texte)">📋 Infos pratiques</strong>
-          <ul style="margin-top:8px;font-size:13px;color:var(--texte-doux);list-style:none;line-height:2">
-            <li>Tarif : 14€/h</li>
-            <li>Karcher professionnel</li>
-            <li>Eau à votre charge</li>
-            <li>Résultat garanti</li>
-          </ul>
-        </div>
+    <div class="service-block-text">
+      <div class="service-number">04</div>
+      <h2 class="service-block-name">Nettoyage Karcher</h2>
+      <p class="service-block-desc">Terrasses, allées, dalles, façades, murets… Le nettoyage haute pression redonne un aspect neuf à vos surfaces extérieures. Je viens avec mon équipement, vous n'avez rien à prévoir.</p>
+      <ul class="service-details">
+        <li>Terrasses en carrelage, bois ou béton</li>
+        <li>Allées et chemins d'accès</li>
+        <li>Façades et murets</li>
+        <li>Matériel fourni</li>
+        <li>Éligible au crédit d'impôt (50 %)</li>
+      </ul>
+      <div class="service-price-box">
+        <span class="service-price-main">15 €</span>
+        <span class="service-price-unit">/ heure</span>
       </div>
-      <a href="contact.html?service=karcher" class="btn-primary" style="margin-top:1.5rem;display:inline-block">Demander ce service →</a>
+      <span class="service-price-after">Soit 7,50 €/h après crédit d'impôt</span>
     </div>
   </div>
-</section>
 
-<!-- ── Service : Voiture ── -->
-<section id="voiture" style="border-bottom:1px solid var(--bordure)">
-  <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start">
-    <div>
-      <div class="service-icon-wrap" style="width:64px;height:64px;font-size:28px;border-radius:16px;margin-bottom:1rem">🚗</div>
-      <h2 class="section-title" style="font-size:2rem">Nettoyage voiture</h2>
-      <span class="service-tarif" style="font-size:15px;padding:6px 16px">14 €/heure</span>
-    </div>
-    <div>
-      <p style="font-size:16px;color:var(--texte-doux);line-height:1.8;margin-bottom:1.5rem">
-        Votre voiture retrouve son éclat sans que vous ayez à vous déplacer. Je viens directement chez vous pour un lavage soigné intérieur et extérieur.
-      </p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div style="background:var(--vert-pale);border-radius:12px;padding:1rem">
-          <strong style="font-size:14px;color:var(--vert)">✓ Ce qui est inclus</strong>
-          <ul style="margin-top:8px;font-size:13px;color:var(--texte-doux);list-style:none;line-height:2">
-            <li>Lavage extérieur</li>
-            <li>Nettoyage intérieur</li>
-            <li>Aspirateur habitacle</li>
-            <li>Vitres & jantes</li>
-          </ul>
-        </div>
-        <div style="background:white;border:1px solid var(--bordure);border-radius:12px;padding:1rem">
-          <strong style="font-size:14px;color:var(--texte)">📋 Infos pratiques</strong>
-          <ul style="margin-top:8px;font-size:13px;color:var(--texte-doux);list-style:none;line-height:2">
-            <li>Tarif : 14€/h</li>
-            <li>Produits fournis</li>
-            <li>À domicile ou parking</li>
-            <li>Eau à votre charge</li>
-          </ul>
-        </div>
+  <hr class="divider" />
+
+  <!-- VOITURE -->
+  <div class="service-block" id="voiture">
+    <div class="service-block-text">
+      <div class="service-number">05</div>
+      <h2 class="service-block-name">Nettoyage voiture</h2>
+      <p class="service-block-desc">Lavage complet de votre véhicule, intérieur et extérieur, directement dans votre allée ou garage. Aspirateur, nettoyage des vitres, plastiques et carrosserie. Votre voiture ressort comme neuve sans que vous bougez.</p>
+      <ul class="service-details">
+        <li>Lavage extérieur soigné</li>
+        <li>Nettoyage intérieur complet</li>
+        <li>Vitres, tableau de bord, plastiques</li>
+        <li>Directement à votre domicile</li>
+        <li>Éligible au crédit d'impôt (50 %)</li>
+      </ul>
+      <div class="service-price-box">
+        <span class="service-price-main">35 €</span>
+        <span class="service-price-unit">/ véhicule</span>
       </div>
-      <a href="contact.html?service=nettoyage-voiture" class="btn-primary" style="margin-top:1.5rem;display:inline-block">Demander ce service →</a>
+      <span class="service-price-after">Soit 17,50 € après crédit d'impôt</span>
+    </div>
+    <div class="service-block-img">
+      <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=700&q=80" alt="Nettoyage voiture à domicile" loading="lazy" />
     </div>
   </div>
-</section>
 
-<!-- ── Service : Gouttières ── -->
-<section id="gouttieres" style="background:var(--vert-pale)">
-  <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start">
-    <div>
-      <div class="service-icon-wrap" style="width:64px;height:64px;font-size:28px;border-radius:16px;margin-bottom:1rem;background:white">🏠</div>
-      <h2 class="section-title" style="font-size:2rem">Gouttières</h2>
-      <span class="service-tarif" style="font-size:15px;padding:6px 16px">14 €/heure</span>
+  <hr class="divider" />
+
+  <!-- GOUTTIERES -->
+  <div class="service-block" id="gouttieres">
+    <div class="service-block-img">
+      <img src="https://images.unsplash.com/photo-1609340496756-e82c56e98ba9?w=700&q=80" alt="Nettoyage gouttières" loading="lazy" />
     </div>
-    <div>
-      <p style="font-size:16px;color:var(--texte-doux);line-height:1.8;margin-bottom:1.5rem">
-        Des gouttières bouchées peuvent causer de sérieux dégâts. Je les nettoie et les débouche pour protéger votre toiture et vos fondations.
-      </p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div style="background:white;border-radius:12px;padding:1rem">
-          <strong style="font-size:14px;color:var(--vert)">✓ Ce qui est inclus</strong>
-          <ul style="margin-top:8px;font-size:13px;color:var(--texte-doux);list-style:none;line-height:2">
-            <li>Débouchage complet</li>
-            <li>Nettoyage en profondeur</li>
-            <li>Vérification des fixations</li>
-            <li>Évacuation des déchets</li>
-          </ul>
-        </div>
-        <div style="background:white;border:1px solid var(--bordure);border-radius:12px;padding:1rem">
-          <strong style="font-size:14px;color:var(--texte)">📋 Infos pratiques</strong>
-          <ul style="margin-top:8px;font-size:13px;color:var(--texte-doux);list-style:none;line-height:2">
-            <li>Tarif : 14€/h</li>
-            <li>Matériel fourni</li>
-            <li>Devis selon surface</li>
-            <li>Résultat garanti</li>
-          </ul>
-        </div>
+    <div class="service-block-text">
+      <div class="service-number">06</div>
+      <h2 class="service-block-name">Nettoyage gouttières</h2>
+      <p class="service-block-desc">Des gouttières bouchées peuvent causer des dégâts importants sur votre toiture et vos façades. Je les débouche et les nettoie intégralement. Tarif établi sur devis selon la configuration de votre maison.</p>
+      <ul class="service-details">
+        <li>Débouchage complet</li>
+        <li>Nettoyage intérieur et extérieur</li>
+        <li>Évacuation des débris</li>
+        <li>Éligible au crédit d'impôt (50 %)</li>
+      </ul>
+      <div class="service-price-box">
+        <span class="service-price-main">Devis</span>
       </div>
-      <a href="contact.html?service=gouttieres" class="btn-primary" style="margin-top:1.5rem;display:inline-block">Demander ce service →</a>
+      <span class="service-price-after">Gratuit et sans engagement</span>
     </div>
   </div>
-</section>
 
-<section style="background:var(--vert);text-align:center;padding:4rem 2rem">
-  <h2 class="section-title" style="color:white;margin-bottom:1rem">Un autre besoin ?</h2>
-  <p style="color:rgba(255,255,255,0.75);margin-bottom:2rem">N'hésitez pas à me décrire votre demande, même si elle ne figure pas dans la liste.</p>
-  <a href="contact.html" class="btn-primary" style="background:white;color:var(--vert);font-weight:600">Me contacter →</a>
+</div>
+
+<!-- CREDIT IMPOT -->
+<section class="credit-section">
+  <div class="credit-inner">
+    <div class="section-tag">Bon à savoir</div>
+    <h2>Toutes ces prestations ouvrent droit<br>à un <em>crédit d'impôt de 50 %</em></h2>
+    <p>En tant que service à la personne déclaré, chaque euro que vous dépensez vous est remboursé à moitié par l'État, sous forme de crédit d'impôt. Même si vous n'êtes pas imposable, vous recevez le remboursement directement.</p>
+    <p>Vous pouvez également payer en CESU (Chèque Emploi Service Universel), ce qui simplifie encore la démarche.</p>
+    <div class="credit-example">
+      <div class="credit-col">
+        <div class="credit-label">Tarif affiché</div>
+        <div class="credit-val before">15 €/h</div>
+        <div class="credit-sub">Jardinage</div>
+      </div>
+      <div class="credit-col">
+        <div class="credit-label">Ce que vous payez vraiment</div>
+        <div class="credit-val after">7,50 €/h</div>
+        <div class="credit-sub">Après crédit d'impôt</div>
+      </div>
+    </div>
+    <a href="contact.html" class="btn-primary">Demander un devis gratuit &rarr;</a>
+  </div>
 </section>
 
 <footer>
-  <div class="footer-logo">Le Bon<span> Voisin</span></div>
   <p>© 2025 Le Bon Voisin · Services à domicile · Yvelines (78)</p>
   <div class="footer-links">
     <a href="index.html">Accueil</a>
     <a href="services.html">Services</a>
+    <a href="a-propos.html">À propos</a>
     <a href="contact.html">Contact</a>
+    <a href="mentions-legales.html">Mentions légales</a>
   </div>
 </footer>
 
-<script>
-  document.getElementById('menu-btn').addEventListener('click', function() {
-    document.getElementById('nav-menu').classList.toggle('open');
-  });
-  const params = new URLSearchParams(window.location.search);
-</script>
 </body>
 </html>
