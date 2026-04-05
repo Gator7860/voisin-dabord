@@ -177,7 +177,7 @@
         </div>
         <div>
           <div class="info-card-label">E-mail</div>
-          <div class="info-card-value"><a href="mailto:contact@voisindabord.fr">contact@voisindabord.fr</a></div>
+          <div class="info-card-value"><a href="/cdn-cgi/l/email-protection#e685898892878592a690898f958f88828784899482c88094"><span class="__cf_email__" data-cfemail="7e1d11100a1f1d0a3e0811170d17101a1f1c110c1a50180c">[email&#160;protected]</span></a></div>
         </div>
       </div>
       <div class="info-card">
@@ -240,9 +240,24 @@
           <input type="email" id="email" name="email" required placeholder="jean@email.com" />
         </div>
 
-        <div>
+        <div class="form-full">
           <label for="commune">Commune <span class="req">*</span></label>
           <input type="text" id="commune" name="commune" required placeholder="Versailles" />
+        </div>
+
+        <div>
+          <label for="telephone">Téléphone</label>
+          <input type="tel" id="telephone" name="telephone" placeholder="06 12 34 56 78" />
+        </div>
+
+        <div>
+          <label for="rappel">Préférence de contact</label>
+          <select id="rappel" name="rappel">
+            <option value="" disabled selected>Comment vous contacter ?</option>
+            <option value="Téléphone">Par téléphone</option>
+            <option value="E-mail">Par e-mail</option>
+            <option value="Les deux">Les deux</option>
+          </select>
         </div>
 
         <div class="form-full">
@@ -287,12 +302,6 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const form = document.getElementById('contactForm');
-  const successMsg = document.getElementById('successMsg');
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const data = new FormData(form);
-    const response = await fetch(form.action, {
-      method: 'POST', body: data,
-      headers: { 'Accept'
+  const successMsg = document.g
