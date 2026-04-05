@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Le Bon Voisin · Yvelines (78)</title>
+  <title>Contact — Voisin D'abord · Yvelines (78)</title>
   <meta name="description" content="Faites votre demande de service à domicile dans les Yvelines. Je vous recontacte sous 24h." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -150,7 +150,7 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">Le Bon<span> Voisin</span></a>
+  <a href="index.html" class="nav-logo">Voisin D'abord</a>
   <ul class="nav-links">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="services.html">Services</a></li>
@@ -177,7 +177,7 @@
         </div>
         <div>
           <div class="info-card-label">E-mail</div>
-          <div class="info-card-value"><a href="mailto:lebonvoisin78@gmail.com">lebonvoisin78@gmail.com</a></div>
+          <div class="info-card-value"><a href="mailto:contact@voisindabord.fr">contact@voisindabord.fr</a></div>
         </div>
       </div>
       <div class="info-card">
@@ -277,7 +277,7 @@
 </div>
 
 <footer>
-  <p>© 2025 Le Bon Voisin · Services à domicile · Yvelines (78)</p>
+  <p>© 2025 Voisin D'abord · Services à domicile · Yvelines (78)</p>
   <div class="footer-links">
     <a href="index.html">Accueil</a>
     <a href="services.html">Services</a>
@@ -287,7 +287,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const form = document.getElementById('contactForm');
   const successMsg = document.getElementById('successMsg');
   form.addEventListener('submit', async function(e) {
@@ -295,15 +295,4 @@
     const data = new FormData(form);
     const response = await fetch(form.action, {
       method: 'POST', body: data,
-      headers: { 'Accept': 'application/json' }
-    });
-    if (response.ok) {
-      form.style.display = 'none';
-      successMsg.classList.add('visible');
-      window.scrollTo({ top: successMsg.offsetTop - 100, behavior: 'smooth' });
-    }
-  });
-</script>
-
-</body>
-</html>
+      headers: { 'Accept'
