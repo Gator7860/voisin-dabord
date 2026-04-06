@@ -293,6 +293,8 @@
     }
     .zone-list-second li { opacity: 0.7; }
     .zone-list-second li::before { background: var(--brun-mid); }
+    .zone-map {
+      border-radius: 1.25rem; overflow: hidden;
       height: 420px;
       box-shadow: 0 24px 48px rgba(59,47,32,0.12);
       border: 1px solid var(--brun-pale);
@@ -549,8 +551,8 @@
   </div>
 </footer>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   var map = L.map('map', {
     center: [48.868, 1.940],
