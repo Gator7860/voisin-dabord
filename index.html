@@ -281,12 +281,12 @@
       content: ''; width: 6px; height: 6px; border-radius: 50%;
       background: var(--vert); flex-shrink: 0;
     }
-    .zone-img {
+    .zone-map {
       border-radius: 1.25rem; overflow: hidden;
-      aspect-ratio: 4/3;
+      height: 420px;
       box-shadow: 0 24px 48px rgba(59,47,32,0.12);
+      border: 1px solid var(--brun-pale);
     }
-    .zone-img img { width: 100%; height: 100%; object-fit: cover; }
 
     /* CTA FINAL */
     .cta-final {
@@ -505,9 +505,7 @@
         <li>Et environs</li>
       </ul>
     </div>
-    <div class="zone-img">
-      <img src="img-karcher.jpg" alt="Maison dans les Yvelines" loading="lazy" />
-    </div>
+    <div class="zone-map" id="map"></div>
   </div>
 </section>
 
@@ -531,5 +529,58 @@
   </div>
 </footer>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  var map = L.map('map', {
+    center: [48.855, 1.92],
+    zoom: 11,
+    scrollWheelZoom: false
+  });
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+    maxZoom: 18
+  }).addTo(map);
+
+  var iconVert = L.divIcon({
+    className: '',
+    html: '<div style="width:14px;height:14px;background:#2d5a27;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);"></div>',
+    iconSize: [14, 14],
+    iconAnchor: [7, 7]
+  });
+
+  var communes = [
+    { nom: "Saint-Nom-la-Bretèche", lat: 48.8578, lng: 2.0069, principal: true },
+    { nom: "Versailles", lat: 48.8049, lng: 2.1204 },
+    { nom: "Plaisir", lat: 48.8197, lng: 1.9533 },
+    { nom: "Les Clayes-sous-Bois", lat: 48.8247, lng: 1.9764 },
+    { nom: "Villepreux", lat: 48.8314, lng: 2.0000 },
+    { nom: "Fontenay-le-Fleury", lat: 48.8153, lng: 2.0519 },
+    { nom: "Bailly", lat: 48.8511, lng: 2.0617 },
+    { nom: "Feucherolles", lat: 48.8811, lng: 1.9831 },
+    { nom: "Mareil-sur-Mauldre", lat: 48.9014, lng: 1.8831 },
+    { nom: "Neauphle-le-Château", lat: 48.8164, lng: 1.8981 },
+    { nom: "Beynes", lat: 48.8567, lng: 1.8717 },
+    { nom: "Jouars-Pontchartrain", lat: 48.7886, lng: 1.9033 }
+  ];
+
+  var iconPrincipal = L.divIcon({
+    className: '',
+    html: '<div style="width:18px;height:18px;background:#2d5a27;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(45,90,39,0.5);"></div>',
+    iconSize: [18, 18],
+    iconAnchor: [9, 9]
+  });
+
+  communes.forEach(function(c) {
+    var marker = L.marker([c.lat, c.lng], { icon: c.principal ? iconPrincipal : iconVert })
+      .addTo(map)
+      .bindPopup('<strong>' + c.nom + '</strong><br><span style="font-size:12px;color:#7a6550;">Zone d\'intervention</span>');
+    if (c.principal) marker.openPopup();
+  });
+
+  map.on('focus', function() { map.scrollWheelZoom.enable(); });
+  map.on('blur', function() { map.scrollWheelZoom.disable(); });
+</script>
 </body>
 </html>
