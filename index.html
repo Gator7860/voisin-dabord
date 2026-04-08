@@ -585,6 +585,89 @@
     maxZoom: 18
   }).addTo(map);
 
+  /* Chargement du vrai contour CC Gally Mauldre via l'API officielle geo.gouv.fr */
+  fetch('https://geo.api.gouv.fr/epcis/200034130?fields=contour&format=geojson&geometry=contour')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      L.geoJSON(data, {
+        style: {
+          color: '#2d5a27',
+          weight: 2.5,
+          fillColor: '#2d5a27',
+          fillOpacity: 0.12
+        }
+      }).addTo(map).bindPopup('<strong>CC Gally Mauldre</strong><br><span style="font-size:12px;color:#7a6550;">Zone d\'intervention principale</span>');
+    })
+    .catch(function() {
+      /* Fallback si l'API ne répond pas */
+      var fallback = [
+        [48.877,1.838],[48.893,1.845],[48.921,1.878],[48.918,1.912],
+        [48.908,1.942],[48.900,1.965],[48.893,1.988],[48.882,2.012],
+        [48.870,2.038],[48.857,2.058],[48.843,2.065],[48.832,2.058],
+        [48.822,2.042],[48.815,2.020],[48.810,1.998],[48.815,1.972],
+        [48.820,1.948],[48.818,1.918],[48.822,1.890],[48.836,1.862],
+        [48.852,1.843],[48.865,1.836],[48.877,1.838]
+      ];
+      L.polygon(fallback, { color:'#2d5a27', weight:2.5, fillColor:'#2d5a27', fillOpacity:0.12 }).addTo(map);
+    });
+
+  var iconVert = L.divIcon({
+    className: '',
+    html: '<div style="width:12px;height:12px;background:#2d5a27;border-radius:50%;border:2.5px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.25);"></div>',
+    iconSize: [12, 12], iconAnchor: [6, 6]
+  });
+
+  var iconGris = L.divIcon({
+    className: '',
+    html: '<div style="width:10px;height:10px;background:#7a6550;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2);opacity:0.7;"></div>',
+    iconSize: [10, 10], iconAnchor: [5, 5]
+  });
+
+  var principale = [
+    { nom: "Saint-Nom-la-Bretèche", lat: 48.857, lng: 2.019 },
+    { nom: "Feucherolles",          lat: 48.873, lng: 1.974 },
+    { nom: "Chavenay",              lat: 48.836, lng: 1.998 },
+    { nom: "Crespières",            lat: 48.853, lng: 1.954 },
+    { nom: "Davron",                lat: 48.856, lng: 1.985 },
+    { nom: "Mareil-sur-Mauldre",    lat: 48.893, lng: 1.869 },
+    { nom: "Herbeville",            lat: 48.905, lng: 1.887 },
+    { nom: "Maule",                 lat: 48.910, lng: 1.850 },
+    { nom: "Bazemont",              lat: 48.913, lng: 1.893 }
+  ];
+
+  var secondaire = [
+    { nom: "Versailles", lat: 48.8049, lng: 2.1204 },
+    { nom: "Plaisir", lat: 48.8197, lng: 1.9533 },
+    { nom: "Les Clayes-sous-Bois", lat: 48.8247, lng: 1.9764 },
+    { nom: "Villepreux", lat: 48.8314, lng: 2.0000 }
+  ];
+
+  principale.forEach(function(c) {
+    L.marker([c.lat, c.lng], { icon: iconVert }).addTo(map)
+      .bindPopup('<strong>' + c.nom + '</strong><br><span style="font-size:12px;color:#2d5a27;">Zone principale</span>');
+  });
+
+  secondaire.forEach(function(c) {
+    L.marker([c.lat, c.lng], { icon: iconGris }).addTo(map)
+      .bindPopup('<strong>' + c.nom + '</strong><br><span style="font-size:12px;color:#7a6550;">Sur demande</span>');
+  });
+
+  map.on('focus', function() { map.scrollWheelZoom.enable(); });
+  map.on('blur', function() { map.scrollWheelZoom.disable(); });
+</script>
+</body>
+</html>
+  var map = L.map('map', {
+    center: [48.862, 1.950],
+    zoom: 11,
+    scrollWheelZoom: false
+  });
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+    maxZoom: 18
+  }).addTo(map);
+
   /* Contour précis CC Gally Mauldre — forme allongée Est-Ouest */
   var zoneGallyMauldre = [
     [48.877, 1.838], // Andelu ouest
