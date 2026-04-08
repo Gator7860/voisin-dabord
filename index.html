@@ -585,30 +585,23 @@
     maxZoom: 18
   }).addTo(map);
 
-  /* Chargement du vrai contour CC Gally Mauldre via l'API officielle geo.gouv.fr */
+  /* Contour officiel via API geo.gouv.fr — fonctionne sur GitHub Pages */
   fetch('https://geo.api.gouv.fr/epcis/200034130?fields=contour&format=geojson&geometry=contour')
     .then(function(r) { return r.json(); })
     .then(function(data) {
       L.geoJSON(data, {
-        style: {
-          color: '#2d5a27',
-          weight: 2.5,
-          fillColor: '#2d5a27',
-          fillOpacity: 0.12
-        }
+        style: { color: '#2d5a27', weight: 2.5, fillColor: '#2d5a27', fillOpacity: 0.12 }
       }).addTo(map).bindPopup('<strong>CC Gally Mauldre</strong><br><span style="font-size:12px;color:#7a6550;">Zone d\'intervention principale</span>');
     })
     .catch(function() {
-      /* Fallback si l'API ne répond pas */
-      var fallback = [
-        [48.877,1.838],[48.893,1.845],[48.921,1.878],[48.918,1.912],
-        [48.908,1.942],[48.900,1.965],[48.893,1.988],[48.882,2.012],
-        [48.870,2.038],[48.857,2.058],[48.843,2.065],[48.832,2.058],
-        [48.822,2.042],[48.815,2.020],[48.810,1.998],[48.815,1.972],
-        [48.820,1.948],[48.818,1.918],[48.822,1.890],[48.836,1.862],
-        [48.852,1.843],[48.865,1.836],[48.877,1.838]
-      ];
-      L.polygon(fallback, { color:'#2d5a27', weight:2.5, fillColor:'#2d5a27', fillOpacity:0.12 }).addTo(map);
+      L.polygon([
+        [48.920,1.843],[48.918,1.880],[48.920,1.905],[48.912,1.930],
+        [48.905,1.950],[48.895,1.960],[48.880,1.982],[48.872,2.000],
+        [48.878,2.020],[48.872,2.040],[48.862,2.060],[48.850,2.065],
+        [48.838,2.055],[48.832,2.038],[48.830,2.010],[48.833,1.988],
+        [48.840,1.965],[48.838,1.945],[48.875,1.855],[48.870,1.840],
+        [48.868,1.820],[48.878,1.815],[48.895,1.830],[48.910,1.835],[48.920,1.843]
+      ], { color:'#2d5a27', weight:2.5, fillColor:'#2d5a27', fillOpacity:0.12 }).addTo(map);
     });
 
   var iconVert = L.divIcon({
@@ -624,15 +617,17 @@
   });
 
   var principale = [
-    { nom: "Saint-Nom-la-Bretèche", lat: 48.857, lng: 2.019 },
-    { nom: "Feucherolles",          lat: 48.873, lng: 1.974 },
-    { nom: "Chavenay",              lat: 48.836, lng: 1.998 },
-    { nom: "Crespières",            lat: 48.853, lng: 1.954 },
-    { nom: "Davron",                lat: 48.856, lng: 1.985 },
-    { nom: "Mareil-sur-Mauldre",    lat: 48.893, lng: 1.869 },
-    { nom: "Herbeville",            lat: 48.905, lng: 1.887 },
-    { nom: "Maule",                 lat: 48.910, lng: 1.850 },
-    { nom: "Bazemont",              lat: 48.913, lng: 1.893 }
+    { nom: "Saint-Nom-la-Bretèche", lat: 48.8574, lng: 2.0194 },
+    { nom: "Feucherolles",          lat: 48.8728, lng: 1.9742 },
+    { nom: "Chavenay",              lat: 48.8361, lng: 1.9978 },
+    { nom: "Crespières",            lat: 48.8528, lng: 1.9539 },
+    { nom: "Davron",                lat: 48.8561, lng: 1.9853 },
+    { nom: "Mareil-sur-Mauldre",    lat: 48.8833, lng: 1.8694 },
+    { nom: "Herbeville",            lat: 48.9053, lng: 1.8869 },
+    { nom: "Maule",                 lat: 48.9080, lng: 1.8498 },
+    { nom: "Bazemont",              lat: 48.9131, lng: 1.8931 },
+    { nom: "Montainville",          lat: 48.8831, lng: 1.8639 },
+    { nom: "Andelu",                lat: 48.8803, lng: 1.8250 }
   ];
 
   var secondaire = [
