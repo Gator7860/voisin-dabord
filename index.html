@@ -575,7 +575,7 @@
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   var map = L.map('map', {
-    center: [48.868, 1.940],
+    center: [48.862, 1.950],
     zoom: 11,
     scrollWheelZoom: false
   });
@@ -585,16 +585,31 @@
     maxZoom: 18
   }).addTo(map);
 
-  /* Contour approximatif CC Gally Mauldre */
+  /* Contour précis CC Gally Mauldre — forme allongée Est-Ouest */
   var zoneGallyMauldre = [
-    [48.914, 1.862], [48.927, 1.889], [48.921, 1.924],
-    [48.912, 1.952], [48.903, 1.972], [48.892, 1.994],
-    [48.878, 2.010], [48.868, 2.031], [48.858, 2.058],
-    [48.845, 2.071], [48.830, 2.063], [48.818, 2.048],
-    [48.810, 2.025], [48.808, 1.998], [48.815, 1.972],
-    [48.822, 1.945], [48.820, 1.916], [48.825, 1.888],
-    [48.836, 1.865], [48.851, 1.845], [48.867, 1.838],
-    [48.884, 1.840], [48.899, 1.848], [48.914, 1.862]
+    [48.877, 1.838], // Andelu ouest
+    [48.893, 1.845], // Maule nord-ouest
+    [48.921, 1.878], // Bazemont nord
+    [48.918, 1.912], // Bazemont nord-est
+    [48.908, 1.942], // Herbeville nord
+    [48.900, 1.965], // Herbeville est
+    [48.893, 1.988], // Mareil-sur-Mauldre nord-est
+    [48.882, 2.012], // Crespières nord
+    [48.870, 2.038], // Feucherolles nord
+    [48.857, 2.058], // Feucherolles est
+    [48.843, 2.065], // Saint-Nom est
+    [48.832, 2.058], // Chavenay est
+    [48.822, 2.042], // Chavenay sud-est
+    [48.815, 2.020], // Davron sud
+    [48.810, 1.998], // Davron sud-ouest
+    [48.815, 1.972], // Crespières sud
+    [48.820, 1.948], // Montainville sud
+    [48.818, 1.918], // Montainville sud-ouest
+    [48.822, 1.890], // Montainville ouest
+    [48.836, 1.862], // Andelu sud
+    [48.852, 1.843], // Andelu nord-sud
+    [48.865, 1.836], // Andelu
+    [48.877, 1.838], // retour départ
   ];
 
   L.polygon(zoneGallyMauldre, {
@@ -618,16 +633,17 @@
   });
 
   var principale = [
-    { nom: "Saint-Nom-la-Bretèche", lat: 48.8578, lng: 2.0069 },
-    { nom: "Feucherolles", lat: 48.8681, lng: 2.0281 },
-    { nom: "Crespières", lat: 48.8528, lng: 1.9836 },
-    { nom: "Davron", lat: 48.8414, lng: 2.0022 },
-    { nom: "Mareil-sur-Mauldre", lat: 48.9014, lng: 1.8831 },
-    { nom: "Herbeville", lat: 48.8953, lng: 1.9219 },
-    { nom: "Maule", lat: 48.9053, lng: 1.8486 },
-    { nom: "Bazemont", lat: 48.9181, lng: 1.9106 },
-    { nom: "Montainville", lat: 48.8794, lng: 1.8758 },
-    { nom: "Andelu", lat: 48.8847, lng: 1.8461 }
+    { nom: "Saint-Nom-la-Bretèche", lat: 48.8478, lng: 2.0069 },
+    { nom: "Feucherolles", lat: 48.8581, lng: 2.0181 },
+    { nom: "Chavenay", lat: 48.8314, lng: 2.0100 },
+    { nom: "Crespières", lat: 48.8428, lng: 1.9836 },
+    { nom: "Davron", lat: 48.8314, lng: 2.0022 },
+    { nom: "Mareil-sur-Mauldre", lat: 48.8814, lng: 1.9031 },
+    { nom: "Herbeville", lat: 48.8853, lng: 1.9319 },
+    { nom: "Maule", lat: 48.9053, lng: 1.8686 },
+    { nom: "Bazemont", lat: 48.9081, lng: 1.8906 },
+    { nom: "Montainville", lat: 48.8494, lng: 1.8958 },
+    { nom: "Andelu", lat: 48.8647, lng: 1.8561 }
   ];
 
   var secondaire = [
