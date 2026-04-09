@@ -3,9 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Voisin D'abord — Services à domicile, Yvelines (78)</title>
-  <meta name="description" content="Services à domicile dans les Yvelines : baby-sitting, pet-sitting, jardinage, nettoyage Karcher, voiture et gouttières. Tarifs clairs, intervention rapide." />
-  <meta name="keywords" content="services à domicile Yvelines, baby-sitting 78, jardinage Plaine de Mauldre, nettoyage karcher Versailles, pet-sitting 78" />
+  <title>Services à domicile Yvelines (78) — Voisin D'abord</title>
+  <meta name="description" content="Baby-sitting, jardinage, nettoyage Karcher et voiture à domicile dans les Yvelines. Déclaré SAP — crédit d'impôt 50%. Secteur Gally Mauldre, Saint-Nom-la-Bretèche, Feucherolles." />
+  <meta name="keywords" content="services à domicile Yvelines, baby-sitting Saint-Nom-la-Bretèche, jardinage Feucherolles, nettoyage Karcher 78, Gally Mauldre" />
+  <script>if(location.hostname==='voisindabord.fr')location.replace('https://www.voisindabord.fr'+location.pathname+location.search);</script>
+  <link rel="canonical" href="https://www.voisindabord.fr/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Voisin D'abord" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:url" content="https://www.voisindabord.fr/" />
+  <meta property="og:title" content="Services à domicile Yvelines — Voisin D'abord" />
+  <meta property="og:description" content="Baby-sitting, jardinage, nettoyage Karcher et voiture à domicile dans les Yvelines. Déclaré SAP — crédit d'impôt 50%." />
+  <meta property="og:image" content="https://www.voisindabord.fr/img-jardinage.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -65,6 +74,23 @@
       transition: background 0.2s, transform 0.15s;
     }
     .nav-cta:hover { background: var(--vert-clair); transform: translateY(-1px); }
+
+    /* NAV BURGER */
+    .nav-right { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-burger {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      padding: 6px; flex-direction: column; gap: 5px;
+      border-radius: var(--r);
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--brun); border-radius: 2px;
+      transition: transform 0.25s, opacity 0.2s, transform 0.25s;
+    }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* HERO */
     .hero {
@@ -335,7 +361,22 @@
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; gap: 2.5rem; min-height: auto; padding-top: 3rem; }
       .hero-image { max-height: 320px; aspect-ratio: 3/2; }
-      .nav-links { display: none; }
+      .nav-links {
+        display: none;
+        position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0;
+        background: var(--blanc); border-bottom: 1px solid var(--brun-pale);
+        box-shadow: 0 8px 24px rgba(59,47,32,0.08);
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li a {
+        display: block;
+        padding: 0.9rem clamp(1.5rem, 5vw, 4rem);
+        font-size: 0.95rem; border-bottom: 1px solid var(--brun-pale);
+      }
+      .nav-links li:last-child a { border-bottom: none; }
+      .nav-burger { display: flex; }
       .zone-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .hero-stats { gap: 1.5rem; }
       .banner-big-num { display: none; }
@@ -347,13 +388,18 @@
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Voisin D'abord</a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="services.html">Services</a></li>
     <li><a href="a-propos.html">À propos</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a href="contact.html" class="nav-cta">Demander un devis</a>
+  <div class="nav-right">
+    <a href="contact.html" class="nav-cta">Demander un devis</a>
+    <button class="nav-burger" id="navBurger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -629,6 +675,37 @@
 
   map.on('focus', function() { map.scrollWheelZoom.enable(); });
   map.on('blur', function() { map.scrollWheelZoom.disable(); });
+</script>
+<script>
+  (function() {
+    var burger = document.getElementById('navBurger');
+    var navLinks = document.getElementById('navLinks');
+
+    burger.addEventListener('click', function() {
+      var isOpen = navLinks.classList.toggle('open');
+      burger.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', isOpen);
+      burger.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+    });
+
+    navLinks.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        navLinks.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Ouvrir le menu');
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('nav')) {
+        navLinks.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Ouvrir le menu');
+      }
+    });
+  })();
 </script>
 </body>
 </html>

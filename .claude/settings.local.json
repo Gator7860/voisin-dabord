@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(nslookup voisinsdabord.fr)",
+      "Bash(nslookup www.voisinsdabord.fr)"
+    ]
+  }
+}
