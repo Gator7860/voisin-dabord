@@ -272,9 +272,12 @@
             <option value="Baby-sitting">Baby-sitting — 12 €/h</option>
             <option value="Pet-sitting">Pet-sitting — 12 €/h</option>
             <option value="Jardinage">Jardinage — 15 €/h</option>
-            <option value="Nettoyage Karcher">Nettoyage Karcher — 15 €/h</option>
-            <option value="Nettoyage voiture">Nettoyage voiture — 35 €/véhicule</option>
+            <option value="Nettoyage Karcher">Nettoyage Karcher — 15 €/h + 10 € déplacement matériel</option>
+            <option value="Nettoyage voiture extérieur">Nettoyage voiture extérieur — 15 €</option>
+            <option value="Nettoyage voiture intérieur">Nettoyage voiture intérieur — 35 €</option>
             <option value="Nettoyage gouttières">Nettoyage gouttières — devis</option>
+            <option value="Montage de meubles">Montage de meubles — 15 €/h</option>
+            <option value="Petits travaux">Petits travaux — 13 €/h</option>
             <option value="Plusieurs services">Plusieurs services</option>
           </select>
         </div>
@@ -318,7 +321,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const form = document.getElementById('contactForm');
   const successMsg = document.getElementById('successMsg');
   form.addEventListener('submit', async function(e) {
@@ -326,15 +329,4 @@
     const data = new FormData(form);
     const response = await fetch(form.action, {
       method: 'POST', body: data,
-      headers: { 'Accept': 'application/json' }
-    });
-    if (response.ok) {
-      form.style.display = 'none';
-      successMsg.classList.add('visible');
-      window.scrollTo({ top: successMsg.offsetTop - 100, behavior: 'smooth' });
-    }
-  });
-</script>
-
-</body>
-</html>
+      headers: { 'Accept'

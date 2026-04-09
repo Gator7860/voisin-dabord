@@ -407,14 +407,14 @@
   <div class="hero-text">
     <span class="hero-badge">Yvelines · 78 · Plaine de Mauldre</span>
     <h1>Votre quotidien,<br><em>pris en main</em><br>avec soin.</h1>
-    <p class="hero-sub">Baby-sitting, jardinage, nettoyage Karcher, voiture, gouttières… Des services fiables à domicile, assurés par un jeune sérieux qui se déplace chez vous.</p>
+    <p class="hero-sub">Baby-sitting, jardinage, nettoyage Karcher, voiture, montage de meubles, petits travaux… Des services fiables à domicile, assurés par un jeune sérieux qui se déplace chez vous.</p>
     <div class="hero-actions">
       <a href="contact.html" class="btn-primary">Faire une demande</a>
       <a href="services.html" class="btn-ghost">Voir les services &rarr;</a>
     </div>
     <div class="hero-stats">
       <div>
-        <div class="stat-num">6</div>
+        <div class="stat-num">8</div>
         <div class="stat-label">services proposés</div>
       </div>
       <div>
@@ -486,7 +486,7 @@
       <div class="service-body">
         <div class="service-name">Nettoyage Karcher</div>
         <div class="service-desc">Terrasses, allées, façades et dalles remises à neuf grâce au nettoyage haute pression.</div>
-        <div class="service-price"><span class="service-price-num">15 €</span> / heure</div>
+        <div class="service-price"><span class="service-price-num">15 €</span> / heure + 10 € déplacement</div>
       </div>
     </a>
     <a href="services.html#voiture" class="service-card">
@@ -496,7 +496,7 @@
       <div class="service-body">
         <div class="service-name">Nettoyage voiture</div>
         <div class="service-desc">Lavage intérieur et extérieur soigné, directement dans votre allée ou garage.</div>
-        <div class="service-price"><span class="service-price-num">35 €</span> / véhicule</div>
+        <div class="service-price"><span class="service-price-num">15 €</span> ext. · <span class="service-price-num">35 €</span> int.</div>
       </div>
     </a>
     <a href="services.html#gouttieres" class="service-card">
@@ -507,6 +507,26 @@
         <div class="service-name">Nettoyage gouttières</div>
         <div class="service-desc">Débouchage et nettoyage complet des gouttières pour protéger votre toiture.</div>
         <div class="service-price">Devis sur demande</div>
+      </div>
+    </a>
+    <a href="services.html#meubles" class="service-card">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=75" alt="Montage de meubles" loading="lazy" />
+      </div>
+      <div class="service-body">
+        <div class="service-name">Montage de meubles</div>
+        <div class="service-desc">IKEA, But, Conforama… Je monte vos meubles en kit directement chez vous, outillage fourni.</div>
+        <div class="service-price"><span class="service-price-num">15 €</span> / heure</div>
+      </div>
+    </a>
+    <a href="services.html#travaux" class="service-card">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&q=75" alt="Petits travaux" loading="lazy" />
+      </div>
+      <div class="service-body">
+        <div class="service-name">Petits travaux</div>
+        <div class="service-desc">Changement de prises électriques, maintenance de mobilier, fixation d'étagères et petites réparations.</div>
+        <div class="service-price"><span class="service-price-num">13 €</span> / heure</div>
       </div>
     </a>
   </div>
@@ -601,7 +621,7 @@
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   var map = L.map('map', {
-    center: [48.868, 1.940],
+    center: [48.862, 1.950],
     zoom: 11,
     scrollWheelZoom: false
   });
@@ -611,16 +631,109 @@
     maxZoom: 18
   }).addTo(map);
 
-  /* Contour approximatif CC Gally Mauldre */
+  /* Contour officiel via API geo.gouv.fr — fonctionne sur GitHub Pages */
+  fetch('https://geo.api.gouv.fr/epcis/200034130?fields=contour&format=geojson&geometry=contour')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      L.geoJSON(data, {
+        style: { color: '#2d5a27', weight: 2.5, fillColor: '#2d5a27', fillOpacity: 0.12 }
+      }).addTo(map).bindPopup('<strong>CC Gally Mauldre</strong><br><span style="font-size:12px;color:#7a6550;">Zone d\'intervention principale</span>');
+    })
+    .catch(function() {
+      L.polygon([
+        [48.920,1.843],[48.918,1.880],[48.920,1.905],[48.912,1.930],
+        [48.905,1.950],[48.895,1.960],[48.880,1.982],[48.872,2.000],
+        [48.878,2.020],[48.872,2.040],[48.862,2.060],[48.850,2.065],
+        [48.838,2.055],[48.832,2.038],[48.830,2.010],[48.833,1.988],
+        [48.840,1.965],[48.838,1.945],[48.875,1.855],[48.870,1.840],
+        [48.868,1.820],[48.878,1.815],[48.895,1.830],[48.910,1.835],[48.920,1.843]
+      ], { color:'#2d5a27', weight:2.5, fillColor:'#2d5a27', fillOpacity:0.12 }).addTo(map);
+    });
+
+  var iconVert = L.divIcon({
+    className: '',
+    html: '<div style="width:12px;height:12px;background:#2d5a27;border-radius:50%;border:2.5px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.25);"></div>',
+    iconSize: [12, 12], iconAnchor: [6, 6]
+  });
+
+  var iconGris = L.divIcon({
+    className: '',
+    html: '<div style="width:10px;height:10px;background:#7a6550;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2);opacity:0.7;"></div>',
+    iconSize: [10, 10], iconAnchor: [5, 5]
+  });
+
+  var principale = [
+    { nom: "Saint-Nom-la-Bretèche", lat: 48.8574, lng: 2.0194 },
+    { nom: "Feucherolles",          lat: 48.8728, lng: 1.9742 },
+    { nom: "Chavenay",              lat: 48.8361, lng: 1.9978 },
+    { nom: "Crespières",            lat: 48.8528, lng: 1.9539 },
+    { nom: "Davron",                lat: 48.8561, lng: 1.9853 },
+    { nom: "Mareil-sur-Mauldre",    lat: 48.8833, lng: 1.8694 },
+    { nom: "Herbeville",            lat: 48.9053, lng: 1.8869 },
+    { nom: "Maule",                 lat: 48.9080, lng: 1.8498 },
+    { nom: "Bazemont",              lat: 48.9131, lng: 1.8931 },
+    { nom: "Montainville",          lat: 48.8831, lng: 1.8639 },
+    { nom: "Andelu",                lat: 48.8803, lng: 1.8250 }
+  ];
+
+  var secondaire = [
+    { nom: "Versailles", lat: 48.8049, lng: 2.1204 },
+    { nom: "Plaisir", lat: 48.8197, lng: 1.9533 },
+    { nom: "Les Clayes-sous-Bois", lat: 48.8247, lng: 1.9764 },
+    { nom: "Villepreux", lat: 48.8314, lng: 2.0000 }
+  ];
+
+  principale.forEach(function(c) {
+    L.marker([c.lat, c.lng], { icon: iconVert }).addTo(map)
+      .bindPopup('<strong>' + c.nom + '</strong><br><span style="font-size:12px;color:#2d5a27;">Zone principale</span>');
+  });
+
+  secondaire.forEach(function(c) {
+    L.marker([c.lat, c.lng], { icon: iconGris }).addTo(map)
+      .bindPopup('<strong>' + c.nom + '</strong><br><span style="font-size:12px;color:#7a6550;">Sur demande</span>');
+  });
+
+  map.on('focus', function() { map.scrollWheelZoom.enable(); });
+  map.on('blur', function() { map.scrollWheelZoom.disable(); });
+</script>
+</body>
+</html>
+  var map = L.map('map', {
+    center: [48.862, 1.950],
+    zoom: 11,
+    scrollWheelZoom: false
+  });
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+    maxZoom: 18
+  }).addTo(map);
+
+  /* Contour précis CC Gally Mauldre — forme allongée Est-Ouest */
   var zoneGallyMauldre = [
-    [48.914, 1.862], [48.927, 1.889], [48.921, 1.924],
-    [48.912, 1.952], [48.903, 1.972], [48.892, 1.994],
-    [48.878, 2.010], [48.868, 2.031], [48.858, 2.058],
-    [48.845, 2.071], [48.830, 2.063], [48.818, 2.048],
-    [48.810, 2.025], [48.808, 1.998], [48.815, 1.972],
-    [48.822, 1.945], [48.820, 1.916], [48.825, 1.888],
-    [48.836, 1.865], [48.851, 1.845], [48.867, 1.838],
-    [48.884, 1.840], [48.899, 1.848], [48.914, 1.862]
+    [48.877, 1.838], // Andelu ouest
+    [48.893, 1.845], // Maule nord-ouest
+    [48.921, 1.878], // Bazemont nord
+    [48.918, 1.912], // Bazemont nord-est
+    [48.908, 1.942], // Herbeville nord
+    [48.900, 1.965], // Herbeville est
+    [48.893, 1.988], // Mareil-sur-Mauldre nord-est
+    [48.882, 2.012], // Crespières nord
+    [48.870, 2.038], // Feucherolles nord
+    [48.857, 2.058], // Feucherolles est
+    [48.843, 2.065], // Saint-Nom est
+    [48.832, 2.058], // Chavenay est
+    [48.822, 2.042], // Chavenay sud-est
+    [48.815, 2.020], // Davron sud
+    [48.810, 1.998], // Davron sud-ouest
+    [48.815, 1.972], // Crespières sud
+    [48.820, 1.948], // Montainville sud
+    [48.818, 1.918], // Montainville sud-ouest
+    [48.822, 1.890], // Montainville ouest
+    [48.836, 1.862], // Andelu sud
+    [48.852, 1.843], // Andelu nord-sud
+    [48.865, 1.836], // Andelu
+    [48.877, 1.838], // retour départ
   ];
 
   L.polygon(zoneGallyMauldre, {
@@ -644,16 +757,17 @@
   });
 
   var principale = [
-    { nom: "Saint-Nom-la-Bretèche", lat: 48.8578, lng: 2.0069 },
-    { nom: "Feucherolles", lat: 48.8681, lng: 2.0281 },
-    { nom: "Crespières", lat: 48.8528, lng: 1.9836 },
-    { nom: "Davron", lat: 48.8414, lng: 2.0022 },
-    { nom: "Mareil-sur-Mauldre", lat: 48.9014, lng: 1.8831 },
-    { nom: "Herbeville", lat: 48.8953, lng: 1.9219 },
-    { nom: "Maule", lat: 48.9053, lng: 1.8486 },
-    { nom: "Bazemont", lat: 48.9181, lng: 1.9106 },
-    { nom: "Montainville", lat: 48.8794, lng: 1.8758 },
-    { nom: "Andelu", lat: 48.8847, lng: 1.8461 }
+    { nom: "Saint-Nom-la-Bretèche", lat: 48.8478, lng: 2.0069 },
+    { nom: "Feucherolles", lat: 48.8581, lng: 2.0181 },
+    { nom: "Chavenay", lat: 48.8314, lng: 2.0100 },
+    { nom: "Crespières", lat: 48.8428, lng: 1.9836 },
+    { nom: "Davron", lat: 48.8314, lng: 2.0022 },
+    { nom: "Mareil-sur-Mauldre", lat: 48.8814, lng: 1.9031 },
+    { nom: "Herbeville", lat: 48.8853, lng: 1.9319 },
+    { nom: "Maule", lat: 48.9053, lng: 1.8686 },
+    { nom: "Bazemont", lat: 48.9081, lng: 1.8906 },
+    { nom: "Montainville", lat: 48.8494, lng: 1.8958 },
+    { nom: "Andelu", lat: 48.8647, lng: 1.8561 }
   ];
 
   var secondaire = [
