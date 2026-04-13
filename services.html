@@ -160,27 +160,15 @@
       .nav-links { display: none; }
       .credit-example { grid-template-columns: 1fr; }
     }
-      /* NAV */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--blanc);
-      border-bottom: 1px solid var(--brun-pale);
-      padding: 0 clamp(1.5rem, 5vw, 4rem);
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .nav-logo { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; color: var(--vert); text-decoration: none; letter-spacing: -0.01em; flex-shrink: 0; }
+  
+    /* NAV OVERRIDES */
     .nav-logo span { color: var(--brun); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
-    .nav-links a { text-decoration: none; color: var(--brun-mid); font-size: 0.9rem; font-weight: 400; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--vert); }
+    .nav-links { position: absolute; left: 50%; transform: translateX(-50%); }
     .nav-tel { color: var(--brun-mid); text-decoration: none; font-size: 0.9rem; opacity: 0.85; white-space: nowrap; flex-shrink: 0; }
     .nav-tel:hover { opacity: 1; color: var(--vert); }
     .nav-tel-desktop { display: inline-flex; align-items: center; }
     .nav-tel-mobile { display: none; }
     .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-    .nav-cta { background: var(--vert); color: #fff; padding: 0.5rem 1.2rem; border-radius: 100px; text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: background 0.2s; white-space: nowrap; }
-    .nav-cta:hover { background: var(--vert-clair); }
     .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; border-radius: 4px; }
     .nav-burger span { display: block; width: 22px; height: 2px; background: var(--vert); border-radius: 2px; transition: transform 0.25s, opacity 0.2s; }
     .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -534,7 +522,6 @@
   </div>
 </footer>
 
-</body>
 <script>
   (function() {
     var burger = document.getElementById('navBurger');
@@ -564,4 +551,5 @@
     });
   })();
 </script>
+</body>
 </html>
