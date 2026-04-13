@@ -31,9 +31,9 @@
       position: sticky; top: 0; z-index: 100;
       background: var(--blanc); border-bottom: 1px solid var(--brun-pale);
       padding: 0 clamp(1.5rem, 5vw, 4rem);
-      display: flex; align-items: center; justify-content: space-between; height: 64px;
+      display: flex; align-items: center; height: 64px;
     }
-    .nav-logo { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; color: var(--vert); text-decoration: none; }
+    .nav-logo { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; color: var(--vert); text-decoration: none; flex-shrink: 0; }
     .nav-logo span { color: var(--brun); }
     .nav-logo-img { height: 32px; width: auto; display: block; }
     .nav-links { display: flex; gap: 2rem; list-style: none; flex: 1; justify-content: center; }
@@ -128,7 +128,7 @@
     .btn-light { background: #fff; color: var(--brun); padding: 0.85rem 2rem; border-radius: 100px; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: all 0.2s; display: inline-block; }
     .btn-light:hover { background: var(--creme); transform: translateY(-2px); }
 
-    footer { background: var(--brun); border-top: 1px solid rgba(255,255,255,0.08); padding: 2rem clamp(1.5rem, 5vw, 4rem); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    footer { background: var(--brun); border-top: 1px solid rgba(255,255,255,0.08); padding: 2rem clamp(1.5rem, 5vw, 4rem); display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; }
     footer p { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
     .footer-links { display: flex; gap: 1.5rem; }
     .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
