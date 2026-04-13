@@ -39,15 +39,17 @@
     .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     @media (max-width: 768px) {
+      /* nav tel */
+      .nav-tel-desktop { display: none !important; }
+      .nav-tel-mobile { display: flex !important; align-items: center; justify-content: center; }
+      .nav-tel { width: 36px; height: 36px; background: var(--vert-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0; }
+      .nav-tel svg { stroke: var(--vert); width: 18px; height: 18px; }
       .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; flex-direction: column; justify-content: flex-start; gap: 0; background: var(--blanc); border-bottom: 1px solid var(--brun-pale); box-shadow: 0 8px 24px rgba(59,47,32,0.08); z-index: 999; flex: none; }
       .nav-links.open { display: flex; }
       .nav-links li a { display: block; padding: 0.9rem 1.5rem; font-size: 0.95rem; border-bottom: 1px solid var(--brun-pale); }
       .nav-links li:last-child a { border-bottom: none; }
-      .nav-tel { width: 36px; height: 36px; background: var(--vert-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0; opacity: 1; gap: 0; }
-      .nav-tel-mobile { display: flex; }
-      .nav-tel svg { stroke: var(--vert); width: 18px; height: 18px; }
-      .nav-tel-desktop-text { display: none; }
       .nav-cta { display: none; }
+      .nav-right { margin-left: auto; display: flex; align-items: center; gap: 0.5rem; }
       .nav-burger { display: flex; }
     }
     /* ── FIN NAV ── */
@@ -68,7 +70,13 @@
     footer p { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
     .footer-links { display: flex; gap: 1.5rem; }
     .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; }
-    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); 
+            /* footer mobile */
+      footer { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 2rem 1.5rem; }
+      .footer-links { flex-direction: column; gap: 0; width: 100%; }
+      .footer-links a { display: block; padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.95rem; }
+      .footer-links a:last-child { border-bottom: none; color: rgba(255,255,255,0.8); font-weight: 500; padding-top: 1rem; margin-top: 0.25rem; }
+    }
     
   </style>
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -87,9 +95,9 @@
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <a href="tel:+33662925286" class="nav-tel" aria-label="Appeler le 06 62 92 52 86">
+        <a href="tel:+33662925286" class="nav-tel" aria-label="Appeler le 06 62 92 52 86">
+      <span class="nav-tel-desktop"><svg viewBox="0 0 24 24" fill="none" stroke="#2d5a27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>06 62 92 52 86</span>
       <span class="nav-tel-mobile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="#2d5a27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="nav-tel-desktop-text">06 62 92 52 86</span>
     </a>
     <a href="contact.html" class="nav-cta">Demander un devis</a>
     <button class="nav-burger" id="navBurger" aria-label="Ouvrir le menu" aria-expanded="false">
