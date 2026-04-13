@@ -36,10 +36,7 @@
     .nav-logo { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; color: var(--vert); text-decoration: none; }
     .nav-logo span { color: var(--brun); }
     .nav-logo-img { height: 32px; width: auto; display: block; }
-    .nav-links {
-      display: flex; gap: 2rem; list-style: none;
-      position: absolute; left: 50%; transform: translateX(-50%);
-    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { text-decoration: none; color: var(--brun-mid); font-size: 0.9rem; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--vert); }
     .nav-cta { background: var(--vert); color: #fff; padding: 0.5rem 1.2rem; border-radius: 100px; text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: background 0.2s; }
@@ -138,33 +135,43 @@
     .footer-links a:hover { color: rgba(255,255,255,0.8); }
 
     @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        position: absolute; top: 64px; left: 0; right: 0;
-        transform: none;
-        flex-direction: column; gap: 0;
-        background: var(--blanc); border-bottom: 1px solid var(--brun-pale);
-        box-shadow: 0 8px 24px rgba(59,47,32,0.08);
-        z-index: 99;
-      }
+      .hero, .pourquoi-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nav-links { display: none; }
+    }
+      /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--blanc);
+      border-bottom: 1px solid var(--brun-pale);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; color: var(--vert); text-decoration: none; letter-spacing: -0.01em; flex-shrink: 0; }
+    .nav-logo span { color: var(--brun); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
+    .nav-links a { text-decoration: none; color: var(--brun-mid); font-size: 0.9rem; font-weight: 400; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--vert); }
+    .nav-tel { color: var(--brun-mid); text-decoration: none; font-size: 0.9rem; opacity: 0.85; white-space: nowrap; flex-shrink: 0; }
+    .nav-tel:hover { opacity: 1; color: var(--vert); }
+    .nav-tel-desktop { display: inline-flex; align-items: center; }
+    .nav-tel-mobile { display: none; }
+    .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+    .nav-cta { background: var(--vert); color: #fff; padding: 0.5rem 1.2rem; border-radius: 100px; text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: background 0.2s; white-space: nowrap; }
+    .nav-cta:hover { background: var(--vert-clair); }
+    .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; border-radius: 4px; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: var(--vert); border-radius: 2px; transition: transform 0.25s, opacity 0.2s; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; transform: none; flex-direction: column; gap: 0; background: var(--blanc); border-bottom: 1px solid var(--brun-pale); box-shadow: 0 8px 24px rgba(59,47,32,0.08); z-index: 99; }
       .nav-links.open { display: flex; }
-      .nav-links li a {
-        display: block;
-        padding: 0.9rem 1.5rem;
-        font-size: 0.95rem; border-bottom: 1px solid var(--brun-pale);
-      }
+      .nav-links li a { display: block; padding: 0.9rem 1.5rem; font-size: 0.95rem; border-bottom: 1px solid var(--brun-pale); }
       .nav-links li:last-child a { border-bottom: none; }
-      .nav-logo { white-space: nowrap; line-height: 1.2; }
-      .nav-right { display: flex; align-items: center; gap: 0.5rem; }
       .nav-tel-desktop { display: none; }
       .nav-tel-mobile { display: flex; align-items: center; justify-content: center; }
-      .nav-tel {
-        width: 36px; height: 36px;
-        background: var(--vert-pale);
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        padding: 0; opacity: 1; color: var(--vert);
-      }
+      .nav-tel { width: 36px; height: 36px; background: var(--vert-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0; opacity: 1; }
       .nav-tel svg { stroke: var(--vert); }
       .nav-cta { display: none; }
       .nav-burger { display: flex; }
@@ -186,14 +193,11 @@
     <li><a href="a-propos.html" class="active">À propos</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+  <a href="tel:+33662925286" class="nav-tel" aria-label="Appeler">
+    <span class="nav-tel-desktop"><svg viewBox="0 0 24 24" fill="none" stroke="#2d5a27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="vertical-align:middle;margin-right:4px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>06 62 92 52 86</span>
+    <span class="nav-tel-mobile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+  </a>
   <div class="nav-right">
-    <a href="tel:+33662925286" class="nav-tel" aria-label="Appeler le 06 62 92 52 86">
-      <span class="nav-tel-desktop">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="vertical-align:middle;margin-right:5px;stroke:#2d5a27;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>06 62 92 52 86</span>
-      <span class="nav-tel-mobile">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      </span>
-    </a>
     <a href="contact.html" class="nav-cta">Demander un devis</a>
     <button class="nav-burger" id="navBurger" aria-label="Ouvrir le menu" aria-expanded="false">
       <span></span><span></span><span></span>
