@@ -396,6 +396,8 @@
   const form = document.getElementById('contactForm');
   const successMsg = document.g
 <script>
+
+<script>
   (function() {
     var burger = document.getElementById('navBurger');
     var navLinks = document.getElementById('navLinks');
@@ -415,4 +417,12 @@
       });
     });
     document.addEventListener('click', function(e) {
-      if (!e.target.
+      if (!e.target.closest('nav')) {
+        navLinks.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Ouvrir le menu');
+      }
+    });
+  })();
+</script>
