@@ -14,6 +14,10 @@
   <meta property="og:title" content="À propos — Victor Lafon, Voisin D'abord" />
   <meta property="og:description" content="Victor Lafon, jeune prestataire des Yvelines. Un seul interlocuteur pour tous vos services à domicile : baby-sitting, jardinage, nettoyage. Déclaré SAP." />
   <meta property="og:image" content="https://www.voisindabord.fr/img-apropos.jpg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -139,11 +143,6 @@
       .nav-links { display: none; }
     }
   </style>
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="icon" href="favicon.ico">
-  <link rel="manifest" href="site.webmanifest">
 </head>
 <body>
 
@@ -162,7 +161,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-img">
-    <img src="img-apropos.jpg" alt="Portrait jeune homme souriant" loading="eager" />
+    <img src="img-apropos.jpg" alt="Portrait jeune homme souriant" loading="eager" fetchpriority="high" decoding="sync" width="600" height="800" />
   </div>
   <div>
     <div class="section-tag">Qui suis-je ?</div>
@@ -215,7 +214,7 @@
       <p>Voisin D'abord, c'est aussi ma façon de montrer qu'on peut réussir honnêtement, sans tricher, sans profiter des gens. Je propose des tarifs justes, je respecte mes engagements, et je grandis avec la confiance de mes clients.</p>
     </div>
     <div class="pourquoi-img">
-      <img src="img-karcher.jpg" alt="Paysage Yvelines campagne" loading="lazy" />
+      <img src="img-karcher.jpg" alt="Paysage Yvelines campagne" loading="lazy" decoding="async" width="800" height="600" />
     </div>
   </div>
 </section>
