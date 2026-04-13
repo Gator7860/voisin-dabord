@@ -23,6 +23,21 @@
       --vert: #2d5a27; --vert-clair: #4a8c3f; --vert-pale: #e8f0e6;
       --creme: #f8f5ee; --brun: #3b2f20; --brun-mid: #7a6550;
       --brun-pale: #ece5d8; --blanc: #fdfcf9; --noir: #1a1a1a;
+      .nav-links {
+        display: none;
+        position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0;
+        background: var(--blanc); border-bottom: 1px solid var(--brun-pale);
+        box-shadow: 0 8px 24px rgba(59,47,32,0.08);
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li a {
+        display: block;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.95rem; border-bottom: 1px solid var(--brun-pale);
+      }
+      .nav-links li:last-child a { border-bottom: none; }
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', sans-serif; background: var(--blanc); color: var(--noir); font-size: 16px; line-height: 1.6; }
@@ -159,6 +174,46 @@
       .service-block:nth-child(even) .service-block-img { order: 0; }
       .nav-links { display: none; }
       .credit-example { grid-template-columns: 1fr; }
+
+      /* NAV mobile */
+      .nav-logo { white-space: nowrap; line-height: 1.2; }
+      .nav-right { display: flex; align-items: center; gap: 0.5rem; }
+      .nav-tel-desktop { display: none; }
+      .nav-tel-mobile { display: flex; align-items: center; justify-content: center; }
+      .nav-tel {
+        width: 36px; height: 36px;
+        background: var(--vert-pale);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        padding: 0; opacity: 1; color: var(--vert);
+      }
+      .nav-tel svg { stroke: var(--vert); }
+      .nav-cta { display: none; }
+      .nav-burger { display: flex; }
+      /* FOOTER mobile */
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: 2rem 1.5rem;
+      }
+      .footer-links {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+      }
+      .footer-links a {
+        padding: 0.6rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        font-size: 0.9rem;
+      }
+      .footer-links a:last-child {
+        border-bottom: none;
+        color: rgba(255,255,255,0.7);
+        font-weight: 500;
+        padding-top: 1rem;
+        margin-top: 0.25rem;
+      }
     }
   </style>
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -177,8 +232,18 @@
     <li><a href="a-propos.html">À propos</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a href="tel:+33662925286" class="nav-tel">📞 06 62 92 52 86</a>
-  <a href="contact.html" class="nav-cta">Demander un devis</a>
+  <div class="nav-right">
+    <a href="tel:+33662925286" class="nav-tel" aria-label="Appeler le 06 62 92 52 86">
+      <span class="nav-tel-desktop">06 62 92 52 86</span>
+      <span class="nav-tel-mobile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </span>
+    </a>
+    <a href="contact.html" class="nav-cta">Demander un devis</a>
+    <button class="nav-burger" id="navBurger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <div class="page-hero">
@@ -488,5 +553,34 @@
   </div>
 </footer>
 
+<script>
+  (function() {
+    var burger = document.getElementById('navBurger');
+    var navLinks = document.getElementById('navLinks');
+    if (!burger || !navLinks) return;
+    burger.addEventListener('click', function() {
+      var isOpen = navLinks.classList.toggle('open');
+      burger.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', isOpen);
+      burger.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+    });
+    navLinks.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        navLinks.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Ouvrir le menu');
+      });
+    });
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('nav')) {
+        navLinks.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Ouvrir le menu');
+      }
+    });
+  })();
+</script>
 </body>
 </html>
